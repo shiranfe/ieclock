@@ -1,0 +1,246 @@
+[
+  {
+    "url": "https://ieclock.com/products/c13_iec_lock_rewireable",
+    "slug": "c13_iec_lock_rewireable",
+    "productImage": "tech-specs/c13-iec-lock-rewireable-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3C x 0.75mm | 3C x 1.00mm | 3C x 1.00mm | 3C x 1.50mm Max | 3C x 14-18awg",
+    "rating": "10A Max / 250V~ (Europe) | 15A Max / 250V~ (USA)",
+    "testInformation": "Test Body: KEMA, UL, PSE (USA/Japan) | Test Standard: KEMA-KEUR: | Certified: EN 60320-1:2001+A1:2007 | UL 60320-1 / CSA C22.2 No. 60320-1",
+    "patentInformation": "EU Patent No. EP14594121 | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c13_iec_lock_connector",
+    "slug": "c13_iec_lock_connector",
+    "productImage": "tech-specs/c13-iec-lock-connector-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 0.75 / 1.00mm2 H05 V V-F | 3 x 18 / 16awg SVT / SJT | 3 x 1.25mm2 HVCTF / VCTF | Black, Orange, Blue, Red & White",
+    "rating": "",
+    "testInformation": "Test Body: KEMA, UL, SAA, KC, PSE | Test Standard: IEC/EN 60320-1",
+    "patentInformation": "Patents: U.K. Patent | No. GB2383202B | International Patent application No. | PCT/GB02/05714 | | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c19_locking_connector",
+    "slug": "c19_locking_connector",
+    "productImage": "tech-specs/c19-locking-connector-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C19 lockable connector"
+    ],
+    "cableSize": "3 x 1.5mm2 H05VV-F, 3 x 18AWG SVT / SJT | 3 x 16AWG SVT / SJT, 3 x 14AWG SJT, | 3 x 12AWG SJT | Black, Orange, Blue, Red & White",
+    "rating": "",
+    "testInformation": "Test Body: KEMA, UL, SAA, KC | Test Standard: IEC/EN 60320-1",
+    "patentInformation": "Patents: U.K. Patent | No. GB2383202B | International Patent application No. | PCT/GB02/05714 | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c13_locking_connector",
+    "slug": "c13_locking_connector",
+    "productImage": "tech-specs/c13-locking-connector-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZHH",
+      "C13 lockable connector",
+      "Nylon LSZH"
+    ],
+    "cableSize": "3 x 0.75mm2 H05 V V-F | 3 x 1.00mm2 H05 V V-F | 3 x 14 awg SVT / SJT | 3 x 1.25 HVCTF / VCTF | Black, Orange, Blue, Red & White",
+    "rating": "",
+    "testInformation": "Test Body: KEMA, UL, SAA, KC | Test Standard: IEC/EN 60320-1",
+    "patentInformation": "Patents: U.K. Patent | No. GB2383202B | International Patent application No. | PCT/GB02/05714 | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c13_locking_outlet",
+    "slug": "c13_locking_outlet",
+    "productImage": "tech-specs/c13-locking-outlet-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "PREVENTS ACCIDENTAL DISCONNECTION",
+      "NYLON LSZH (Multi-tier Only)",
+      "C13 LOCKABLE OUTLET"
+    ],
+    "cableSize": "",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "UK Number: 2463468B | EU Number: EP2321879A | HK Number: HK1141901 | Chinese Patent Application No: | CN 102150330 A | | Other worldwide patents pending | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c19_locking_outlet",
+    "slug": "c19_locking_outlet",
+    "productImage": "tech-specs/c19-locking-outlet-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "C19 lockable Outlet",
+      "Nylon LSZH",
+      "C19 lockable outlet"
+    ],
+    "cableSize": "",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "UK Number: 2463468B | EU Number: EP2321879A | HK Number: HK1141901 | Chinese Patent Application No: | CN 102150330 A | | Other worldwide patents pending | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c13_moulded_connector",
+    "slug": "c13_moulded_connector",
+    "productImage": "tech-specs/c13-moulded-connector-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 0.75mm2 H05 V V-F | 3 x 1.00mm2 H05 V V-F | 3 x 14 awg SVT / SJT | 3 x 1.25 HVCTF / VCTF | Black, Orange, Blue, Red & White",
+    "rating": "",
+    "testInformation": "Test Body: KEMA, UL, SAA, KC | Test Standard: IEC/EN 60320-1",
+    "patentInformation": "Patents: U.K. Patent | No. GB2383202B | International Patent application No. | PCT/GB02/05714 | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c13_rewireable_moulded",
+    "slug": "c13_rewireable_moulded",
+    "productImage": "tech-specs/c13-rewireable-moulded-product-image.png",
+    "features": [
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3C x 0.75mm | 3C x 1.00mm | 3C x 1.00mm | 3C x 1.50mm Max | 3C x 14-18awg",
+    "rating": "10A Max / 250V~ (Europe) | 15A Max / 250V~ (USA)",
+    "testInformation": "Test Body: KEMA, UL, PSE (USA/Japan) | Test Standard: KEMA-KEUR: | Certified: EN 60320-1:2001+A1:2007 | UL 60320-1 / CSA C22.2 No. 60320-1",
+    "patentInformation": "EU Patent No. EP14594121 | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c14_ieclock_dual_locking_connector",
+    "slug": "c14_ieclock_dual_locking_connector",
+    "productImage": "tech-specs/c14_dual_locking_connector.png",
+    "features": [
+      "Prevents Accidental Disconnection",
+      "C14 Lockable Connector",
+      "Side Release Locking Mechanism",
+      "Bottom Release Locking Mechanism",
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 1.5mm2 H05VV-F, 3 x 18AWG SVT / SJT",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "Patent Pending | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c19_ieclock_rewireable_connector",
+    "slug": "c19_ieclock_rewireable_connector",
+    "productImage": "tech-specs/c19-rewireable-connector.png",
+    "features": [
+      "Prevents Accidental Disconnection",
+      "C19 Lockable Connector",
+      "Rear Release Locking Mechanism",
+      "Nylon LSZH",
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 1.5mm2 H05VV-F, 3 x 18AWG SVT / SJT",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "Patents: U.K. Patent | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c20_ieclock_dual_locking_connector",
+    "slug": "c20_ieclock_dual_locking_connector",
+    "productImage": "tech-specs/c20-product.png",
+    "features": [
+      "Prevents Accidental Disconnection",
+      "Release locking mechanism",
+      "c20 Lockable Connector",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 1.5mm2 H05VV-F, 3 x 18AWG SVT / SJT",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "Patents: U.K. Patent | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c15_ieclock_slimline_locking_connector",
+    "slug": "c15_ieclock_slimline_locking_connector",
+    "productImage": "tech-specs/c15-product.png",
+    "features": [
+      "Prevents Accidental Disconnection",
+      "C15 Lockable Connector",
+      "Bottom release mechanism",
+      "Space saving mechanism",
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 1.5mm2 H05VV-F, 3 x 18AWG SVT / SJT",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "Patents: U.K. Patent | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/cx_ieclock_panel_mount_connector",
+    "slug": "cx_ieclock_panel_mount_connector",
+    "productImage": "tech-specs/cx-product.png",
+    "features": [
+      "Nylon",
+      "Prevents Accidental Disconnection",
+      "Locking Blade",
+      "Contacts",
+      "Release locking mechanism",
+      "Prevents accidental disconnection",
+      "Nylon LSZH",
+      "C13 lockable connector"
+    ],
+    "cableSize": "3 x 1.5mm2 H05VV-F, 3 x 18AWG SVT / SJT",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "Patents: U.K. Patent | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c13_iec_locking_appliance_outlet",
+    "slug": "c13_iec_locking_appliance_outlet",
+    "productImage": "tech-specs/c13-iec-locking-appliance-outlet.png",
+    "features": [
+      "Release Locking Mechanism",
+      "Prevents Accidental Disconnection",
+      "Nylon LSZH",
+      "C13 Lockable Outlet"
+    ],
+    "cableSize": "",
+    "rating": "",
+    "testInformation": "",
+    "patentInformation": "\u2022 UK Number: 2463468 | \u2022 EU Number: EP2321879A | \u2022 HK Number: HK1141901 | \u2022 Chinese Patent Application No: CN 102150330 A Other worldwide patents pending | U.K. Patent No. GB2383202B"
+  },
+  {
+    "url": "https://ieclock.com/products/c21_iec_lock_locking_connector",
+    "slug": "c21_iec_lock_locking_connector",
+    "productImage": "tech-specs/c21-iec-lock-locking-connector.png",
+    "features": [
+      "Prevents Accidental Disconnection",
+      "Compatible with C20 & C22 Inlets",
+      "Handles High Currents",
+      "Vibration Proof"
+    ],
+    "cableSize": "",
+    "rating": "\u2022 16A / 250V~",
+    "testInformation": "",
+    "patentInformation": "U.K. Patent No. GB2383202B"
+  }
+]

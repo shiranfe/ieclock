@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IEC Lock — מחברי IEC נעילה פטנטיים המונעים ניתוק מקרי. מוצר מבית Scolmore עם פטנט בריטי GB2383202B." />
+  <title>IEC Lock™ — מחברי IEC נעילה פטנטיים</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red:        #cc0000;
+      --red-bright: #e00000;
+      --red-dark:   #990000;
+      --bg-primary:   #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-tertiary:  #1a1a1a;
+      --bg-card:      #161616;
+      --bg-card-hover:#1e1e1e;
+      --border:       #2a2a2a;
+      --border-red:   rgba(204,0,0,0.4);
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --text-muted:   #666666;
+      --font-heb: 'Heebo', sans-serif;
+      --font-lat: 'Barlow Condensed', sans-serif;
+      --nav-h: 72px;
+      --transition: 0.25s ease;
+      --radius: 4px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-heb);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { color: inherit; text-decoration: none; }
+    ul  { list-style: none; }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-heb);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.25em;
+      line-height: 1.1;
+    }
+
+    .section-title span { color: var(--red); }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 3rem;
+      max-width: 640px;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .red-line {
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid var(--red-dark);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+      background: transparent;
+      border-bottom: 1px solid transparent;
+    }
+
+    #nav.scrolled {
+      background: rgba(10, 10, 10, 0.97);
+      border-bottom-color: var(--border);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-lat);
+      font-weight: 900;
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo .k { color: var(--red); }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-menu a {
+      font-family: var(--font-heb);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-cta {
+      font-family: var(--font-heb) !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: var(--text-primary) !important;
+      background: var(--red) !important;
+      padding: 8px 18px !important;
+      border-radius: var(--radius) !important;
+      transition: background var(--transition) !important;
+      margin-right: 8px;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-bright) !important;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      border: none;
+      background: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      right: 0;
+      left: 0;
+      background: rgba(10,10,10,0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 24px;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 999;
+    }
+
+    .nav-mobile.open { display: flex; }
+
+    .nav-mobile a {
+      font-family: var(--font-heb);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--red); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      background: var(--bg-primary);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    /* Grid overlay texture */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(204,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204,0,0,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      z-index: 1;
+    }
+
+    /* Radial red glow */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(204,0,0,0.18) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    /* Diagonal stripe accent */
+    .hero-stripe {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 120px 24px 80px;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-lat);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .hero-title {
+      font-family: var(--font-lat);
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      margin-bottom: 0.15em;
+    }
+
+    .hero-title .tm {
+      font-size: 0.35em;
+      vertical-align: super;
+      color: var(--red);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-heb);
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin: 1.25rem auto 2.5rem;
+      max-width: 640px;
+      line-height: 1.5;
+    }
+
+    .hero-subtitle strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heb);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--red);
+      padding: 15px 32px;
+      border-radius: var(--radius);
+      border: 2px solid var(--red);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-bright);
+      border-color: var(--red-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(204,0,0,0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heb);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      background: transparent;
+      padding: 15px 32px;
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-secondary);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hero-badge svg {
+      flex-shrink: 0;
+      color: var(--red);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ============================================================
+       STATS BAR
+    ============================================================ */
+    #stats {
+      padding: 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide-gap: 0;
+    }
+
+    .stat-item {
+      padding: 2rem 2.5rem;
+      text-align: center;
+      border-left: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    .stat-item:last-child { border-left: none; }
+    .stat-item:hover { background: var(--bg-tertiary); }
+
+    .stat-number {
+      font-family: var(--font-lat);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       PRODUCTS
+    ============================================================ */
+    #products {
+      background: var(--bg-primary);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: right;
+      z-index: 2;
+    }
+
+    .product-card:hover::before { transform: scaleX(1); }
+    .product-card:hover { background: var(--bg-card-hover); }
+
+    .product-img-wrap {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: #f5f5f5;
+      flex-shrink: 0;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .product-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .product-name {
+      font-family: var(--font-heb);
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--red);
+      transition: gap var(--transition);
+      margin-top: auto;
+    }
+
+    .product-card:hover .product-link { gap: 10px; }
+
+    /* ============================================================
+       WHY IEC LOCK
+    ============================================================ */
+    #why {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .why-card {
+      background: var(--bg-tertiary);
+      padding: 2.5rem 2rem;
+      transition: background var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 0;
+      background: rgba(204,0,0,0.06);
+      transition: height 0.3s ease;
+    }
+
+    .why-card:hover { background: #1f1f1f; }
+    .why-card:hover::after { height: 100%; }
+
+    .why-card-inner { position: relative; z-index: 1; }
+
+    .why-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .why-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .why-title span { color: var(--red); }
+
+    .why-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .why-patent {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--font-lat);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--red);
+      border-top: 1px solid var(--border-red);
+      padding-top: 0.75rem;
+      width: 100%;
+    }
+
+    /* ============================================================
+       APPLICATIONS
+    ============================================================ */
+    #applications {
+      background: var(--bg-primary);
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      padding: 2rem 1.75rem;
+      cursor: pointer;
+      transition: background var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-height: 180px;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(204,0,0,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .app-card:hover { background: var(--bg-card-hover); }
+    .app-card:hover::before { opacity: 1; }
+
+    .app-icon {
+      font-size: 2rem;
+      display: block;
+    }
+
+    .app-name {
+      font-family: var(--font-heb);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .app-desc {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .app-arrow {
+      font-size: 1rem;
+      color: var(--red);
+      margin-top: auto;
+      transition: transform var(--transition);
+    }
+
+    .app-card:hover .app-arrow { transform: translateX(-4px); }
+
+    /* ============================================================
+       HOW IT WORKS
+    ============================================================ */
+    #how {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .how-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .how-text p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .how-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    .how-step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-lat);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--red);
+      border: 2px solid var(--red-dark);
+      border-radius: var(--radius);
+      background: rgba(204,0,0,0.08);
+    }
+
+    .step-content h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Visual diagram */
+    .how-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .connector-diagram {
+      width: 100%;
+      max-width: 360px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .diagram-title {
+      font-family: var(--font-lat);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* SVG connector illustration */
+    .connector-svg-wrap {
+      position: relative;
+      width: 180px;
+      height: 180px;
+    }
+
+    .connector-svg-wrap svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .diagram-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .diagram-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(204,0,0,0.12);
+      border: 1px solid var(--border-red);
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--red);
+      font-family: var(--font-lat);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       NEWS
+    ============================================================ */
+    #news {
+      background: var(--bg-primary);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .news-card {
+      background: var(--bg-card);
+      padding: 2rem;
+      cursor: pointer;
+      transition: background var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .news-card:hover { background: var(--bg-card-hover); }
+
+    .news-date {
+      font-family: var(--font-lat);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .news-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    .news-excerpt {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .news-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--red);
+      transition: gap var(--transition);
+    }
+
+    .news-card:hover .news-read { gap: 10px; }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-heb);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-address {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transition: color var(--transition);
+    }
+
+    .contact-item:hover { color: var(--text-primary); }
+
+    .contact-item-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(204,0,0,0.1);
+      border: 1px solid rgba(204,0,0,0.2);
+      border-radius: var(--radius);
+      flex-shrink: 0;
+      color: var(--red);
+    }
+
+    .contact-item a {
+      color: inherit;
+      transition: color var(--transition);
+    }
+
+    .contact-item a:hover { color: var(--red); }
+
+    /* Contact form */
+    .contact-form-wrap h3 {
+      font-family: var(--font-heb);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      font-family: var(--font-heb);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      transition: border-color var(--transition);
+      direction: rtl;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-lat);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .footer-logo .k { color: var(--red); }
+
+    .footer-nav {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 4px 12px;
+      transition: color var(--transition);
+    }
+
+    .footer-nav a:hover { color: var(--text-secondary); }
+
+    .footer-social {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .social-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-copy a { color: var(--text-muted); transition: color var(--transition); }
+    .footer-copy a:hover { color: var(--text-secondary); }
+
+    .footer-patents {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .footer-patent-badge {
+      font-family: var(--font-lat);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--red-dark);
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       SECTION DIVIDERS
+    ============================================================ */
+    .divider-line {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .fade-in-delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .fade-in-delay-2 { animation-delay: 0.25s; opacity: 0; }
+    .fade-in-delay-3 { animation-delay: 0.4s; opacity: 0; }
+    .fade-in-delay-4 { animation-delay: 0.55s; opacity: 0; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-left: none; }
+      .how-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .how-visual { order: -1; }
+      .connector-diagram { max-width: 320px; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; text-align: center; }
+      .footer-nav { justify-content: center; }
+      .footer-social { justify-content: center; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+      section { padding: 64px 0; }
+
+      .nav-menu { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .why-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+
+      .hero-title { font-size: clamp(3rem, 18vw, 5.5rem); }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-patents { align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-left: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .hero-badges { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="ניווט ראשי">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="#hero" class="nav-logo" aria-label="IEC Lock דף הבית">
+        IEC LO<span class="k">K</span>™
+      </a>
+
+      <!-- Desktop menu -->
+      <ul class="nav-menu" role="list">
+        <li><a href="#products">מוצרים</a></li>
+        <li><a href="#applications">יישומים</a></li>
+        <li><a href="#how">איך זה עובד</a></li>
+        <li><a href="#why">מידע טכני</a></li>
+        <li><a href="#news">חדשות</a></li>
+        <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="mobile-menu" role="menu" aria-label="תפריט נייד">
+    <a href="#products" role="menuitem">מוצרים</a>
+    <a href="#applications" role="menuitem">יישומים</a>
+    <a href="#how" role="menuitem">איך זה עובד</a>
+    <a href="#why" role="menuitem">מידע טכני</a>
+    <a href="#news" role="menuitem">חדשות</a>
+    <a href="#contact" role="menuitem">מקרי בוחן</a>
+    <a href="#contact" role="menuitem">צור קשר</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" aria-label="כותרת ראשית">
+    <div class="hero-bg">
+      <div class="hero-stripe"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow fade-in">
+        <span>Scolmore Group</span>
+        <span>פטנט בריטי מס׳ GB2383202B</span>
+      </div>
+
+      <h1 class="hero-title fade-in fade-in-delay-1">
+        IEC LO<span style="color:var(--red)">K</span><span class="tm">™</span>
+      </h1>
+
+      <p class="hero-subtitle fade-in fade-in-delay-2">
+        מחברי IEC נעילה פטנטיים —
+        <strong>הגנה מוחלטת מנתק מקרי</strong>
+        לשרתים, PDU, מחשבים וציוד רשת
+      </p>
+
+      <div class="hero-buttons fade-in fade-in-delay-3">
+        <a href="#products" class="btn-primary" aria-label="גלה את המוצרים">
+          גלה את המוצרים
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+        </a>
+        <a href="#how" class="btn-secondary" aria-label="איך זה עובד">
+          איך זה עובד
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-badges fade-in fade-in-delay-4">
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>מוגן בפטנט בריטי</span>
+        </div>
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>תואם כל תקן IEC</span>
+        </div>
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>מבית Scolmore Group</span>
+        </div>
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          <span>10 סוגי מחברים</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS BAR
+  ============================================================ -->
+  <section id="stats" aria-label="נתונים מרכזיים">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">סוגי מחברים</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">תואמות IEC סטנדרטי</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">GB<span style="font-size:1.5rem">2383202B</span></span>
+          <span class="stat-label">מספר הפטנט הבריטי</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">8+</span>
+          <span class="stat-label">תחומי יישום</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODUCTS
+  ============================================================ -->
+  <section id="products" aria-labelledby="products-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">סדרת המוצרים</span>
+        <h2 class="section-title" id="products-title">מוצרי <span>IEC Lock</span></h2>
+        <p class="section-subtitle">
+          עשרה פתרונות נעילה לכל צורך — כולם פטנטיים, כולם תואמים לתקן IEC הסטנדרטי
+        </p>
+      </div>
+
+      <div class="products-grid" role="list">
+
+        <!-- Card 1 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-1.jpg" alt="מחבר C13 IEC Lock + ניתן לחיווט מחדש" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C13 IEC Lock + ניתן לחיווט מחדש</div>
+            <a href="products/c13_iec_lock_rewireable.html" class="product-link" aria-label="מידע נוסף על מחבר C13 IEC Lock + ניתן לחיווט מחדש">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-2.jpg" alt="מחבר C13 IEC Lock +" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C13 IEC Lock +</div>
+            <a href="products/c13_iec_lock_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C13 IEC Lock +">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-3.jpg" alt="מחבר C19 IEC Lock" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C19 IEC Lock</div>
+            <a href="products/c19_locking_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C19 IEC Lock">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-4.jpg" alt="מחבר C13 IEC Lock" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C13 IEC Lock</div>
+            <a href="products/c13_locking_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C13 IEC Lock">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-5.jpg" alt="שקע C13 IEC Lock" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">שקע C13 IEC Lock</div>
+            <a href="products/c13_locking_outlet.html" class="product-link" aria-label="מידע נוסף על שקע C13 IEC Lock">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-6.jpg" alt="שקע C19 IEC Lock" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">שקע C19 IEC Lock</div>
+            <a href="products/c19_locking_outlet.html" class="product-link" aria-label="מידע נוסף על שקע C19 IEC Lock">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-7.jpg" alt="מחבר C13 IEC Lock מעוצב" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C13 IEC Lock מעוצב</div>
+            <a href="products/c13_moulded_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C13 IEC Lock מעוצב">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-8.jpg" alt="מחבר C13 IEC Lock זוויתי ניתן לחיווט" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C13 IEC Lock זוויתי ניתן לחיווט</div>
+            <a href="products/c13_rewireable_moulded.html" class="product-link" aria-label="מידע נוסף על מחבר C13 IEC Lock זוויתי ניתן לחיווט">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-9.jpg" alt="מחבר C14 IEC Lock + כפול" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C14 IEC Lock + כפול</div>
+            <a href="products/c14_ieclock_dual_locking_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C14 IEC Lock + כפול">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-10.jpg" alt="מחבר C19 IEC Lock+ ניתן לחיווט" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C19 IEC Lock+ ניתן לחיווט</div>
+            <a href="products/c19_ieclock_rewireable_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C19 IEC Lock+ ניתן לחיווט">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-11.jpg" alt="מחבר C20 IEC Lock+ כפול" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C20 IEC Lock+ כפול</div>
+            <a href="products/c20_ieclock_dual_locking_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C20 IEC Lock+ כפול">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 12 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-12.jpg" alt="מחבר C15 IEC Lock סלים" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C15 IEC Lock סלים</div>
+            <a href="products/c15_ieclock_slimline_locking_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C15 IEC Lock סלים">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 13 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-13.jpg" alt="מחבר CX לחיבור פנל" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר CX לחיבור פנל</div>
+            <a href="products/cx_ieclock_panel_mount_connector.html" class="product-link" aria-label="מידע נוסף על מחבר CX לחיבור פנל">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 14 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-14.jpg" alt="שקע C13 IEC נעילה" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">שקע C13 IEC נעילה</div>
+            <a href="products/c13_iec_locking_appliance_outlet.html" class="product-link" aria-label="מידע נוסף על שקע C13 IEC נעילה">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 15 -->
+        <article class="product-card" role="listitem" tabindex="0">
+          <div class="product-img-wrap">
+            <img src="assets/img/product-15.jpg" alt="מחבר C21 IEC Lock" loading="lazy" />
+          </div>
+          <div class="product-body">
+            <div class="product-name">מחבר C21 IEC Lock</div>
+            <a href="products/c21_iec_lock_locking_connector.html" class="product-link" aria-label="מידע נוסף על מחבר C21 IEC Lock">
+              מידע נוסף &#x2190;
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY IEC LOCK
+  ============================================================ -->
+  <section id="why" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">מידע טכני</span>
+        <h2 class="section-title" id="why-title">למה <span>IEC Lock</span>?</h2>
+        <p class="section-subtitle">
+          שלושה יתרונות מרכזיים המבדילים את IEC Lock מכל פתרון חיבור אחר בשוק
+        </p>
+      </div>
+
+      <div class="why-grid" role="list">
+
+        <div class="why-card" role="listitem">
+          <div class="why-card-inner">
+            <span class="why-icon" aria-hidden="true">🔒</span>
+            <h3 class="why-title"><span>נעילה ייחודית</span></h3>
+            <p class="why-desc">
+              מנגנון נעילה פטנטי המונע ניתוק מקרי בכל תנאי. המחבר נועל אוטומטית עם ההכנסה ומשוחרר רק בלחיצה מכוונת.
+              אין צורך בכלים או בהכשרה מיוחדת.
+            </p>
+            <span class="why-patent">
+              פטנט בריטי GB2383202B · קנדי US, EU
+            </span>
+          </div>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-card-inner">
+            <span class="why-icon" aria-hidden="true">⚡</span>
+            <h3 class="why-title"><span>תואם</span> כל תקן IEC</h3>
+            <p class="why-desc">
+              IEC Lock עובד עם כל שקעי IEC סטנדרטיים ללא שינוי בתשתית. אין צורך בשקעים מיוחדים —
+              המנגנון כלול במחבר עצמו בלבד.
+            </p>
+            <span class="why-patent">
+              C13 · C14 · C19 · C20 · C21 · תקן IEC 60320
+            </span>
+          </div>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-card-inner">
+            <span class="why-icon" aria-hidden="true">🛡️</span>
+            <h3 class="why-title"><span>אמין</span> ומוכח</h3>
+            <p class="why-desc">
+              מוגן בפטנט בריטי GB2383202B. נבדק ואושר לשימוש בסביבות קריטיות ברחבי העולם —
+              מרכזי נתונים, ספינות, מתקנים צבאיים ואולפני שידור.
+            </p>
+            <span class="why-patent">
+              מבית Scolmore Group · ייצור בריטי
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       APPLICATIONS
+  ============================================================ -->
+  <section id="applications" aria-labelledby="apps-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">שימושים ותחומים</span>
+        <h2 class="section-title" id="apps-title"><span>יישומים</span></h2>
+        <p class="section-subtitle">
+          IEC Lock פועל בתנאים הקשים ביותר — מהים הפתוח ועד אולפן ההקלטה
+        </p>
+      </div>
+
+      <div class="apps-grid" role="list">
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">⚓</span>
+          <div class="app-name">ימאות</div>
+          <div class="app-desc">הגנה מפני ניתוק עקב רטט ותנועת גלים. הכרחי לציוד ניווט ותקשורת בספינות.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">🏎️</span>
+          <div class="app-name">מירוצי מנועים</div>
+          <div class="app-desc">חיבור 100% לציוד בתחנות הדלק. ביצועים מהימנים בסביבת רטט ולחץ מקסימלי.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">🏥</span>
+          <div class="app-name">יישומים רפואיים</div>
+          <div class="app-desc">אספקת חשמל רציפה קריטית לציוד רפואי. ניתוק מקרי עלול לסכן חיים — IEC Lock מונע זאת.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">🎖️</span>
+          <div class="app-name">צבאי</div>
+          <div class="app-desc">הגנה מפני כל סוג של ניתוק בתנאי שטח קשים. עמיד לרטט, אבק ותנאי קיצון.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">📡</span>
+          <div class="app-name">שידור חוץ</div>
+          <div class="app-desc">אספקת חשמל רציפה קריטית לציוד שידור בשטח. מונע הפסקה בשידור חי.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">🖥️</span>
+          <div class="app-name">מרכזי נתונים</div>
+          <div class="app-desc">הגנה מפני ניתוק מקרי של חיבורי כבלים בשרתים ו-PDU. שמירה על זמינות מקסימלית.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">🎙️</span>
+          <div class="app-name">אולפני הקלטה</div>
+          <div class="app-desc">הגנת ציוד מניתוק מקרי בעת הקלטה. פתרון הכרחי לאולפנים המקצועיים.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+        <article class="app-card" role="listitem" tabindex="0">
+          <span class="app-icon" aria-hidden="true">🔌</span>
+          <div class="app-name">PDU</div>
+          <div class="app-desc">שמירה על פעילות ציוד חיוני המחובר ליחידות חלוקת חשמל. ניהול כבלים מאובטח.</div>
+          <div class="app-arrow" aria-hidden="true">←</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+  ============================================================ -->
+  <section id="how" aria-labelledby="how-title">
+    <div class="container">
+      <div class="how-layout">
+        <div class="how-text">
+          <div class="section-header">
+            <span class="tag">מנגנון הנעילה</span>
+            <h2 class="section-title" id="how-title">איך זה <span>עובד</span></h2>
+          </div>
+          <p>
+            מחברי IEC Lock כוללים מנגנון נעילה ייחודי ופטנטי.
+            ה-IEC Lock מתחבר לכל שקע IEC סטנדרטי ומונע ניתוק מקרי של מחשבים,
+            PDU, שרתים ורוב התקני הרשת.
+          </p>
+          <p>
+            אין צורך לשנות את השקע הקיים — המנגנון כלול במחבר עצמו.
+            הנעילה פועלת אוטומטית ומשוחררת בלחיצה אחת פשוטה.
+          </p>
+
+          <div class="how-steps" role="list">
+            <div class="how-step" role="listitem">
+              <div class="step-num" aria-label="שלב 1">1</div>
+              <div class="step-content">
+                <h4>חבר את המחבר</h4>
+                <p>הכנס את מחבר IEC Lock לכל שקע IEC סטנדרטי — בדיוק כמו מחבר רגיל.</p>
+              </div>
+            </div>
+            <div class="how-step" role="listitem">
+              <div class="step-num" aria-label="שלב 2">2</div>
+              <div class="step-content">
+                <h4>מנגנון הנעילה מתחיל לפעול</h4>
+                <p>ברגע שהמחבר נכנס לשקע, מנגנון הנעילה הפטנטי מתחיל לפעול ונועל אוטומטית.</p>
+              </div>
+            </div>
+            <div class="how-step" role="listitem">
+              <div class="step-num" aria-label="שלב 3">3</div>
+              <div class="step-content">
+                <h4>חיבור מאובטח לחלוטין</h4>
+                <p>החיבור נעול ומאובטח. לשחרור, לחץ על לשונית השחרור ומשוך — פשוט ומהיר.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual diagram -->
+        <div class="how-visual">
+          <div class="connector-diagram">
+            <div class="diagram-title">IEC Lock — מנגנון הנעילה</div>
+
+            <!-- SVG connector illustration -->
+            <div class="connector-svg-wrap" aria-hidden="true">
+              <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+                <!-- Glow bg -->
+                <defs>
+                  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#cc0000" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#cc0000" stop-opacity="0"/>
+                  </radialGradient>
+                  <filter id="blur">
+                    <feGaussianBlur stdDeviation="3"/>
+                  </filter>
+                </defs>
+                <circle cx="90" cy="90" r="80" fill="url(#glow)"/>
+
+                <!-- Connector body -->
+                <rect x="40" y="65" width="100" height="60" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+
+                <!-- IEC C13 face pins -->
+                <ellipse cx="70" cy="95" rx="8" ry="5" fill="#0a0a0a" stroke="#444" stroke-width="1"/>
+                <ellipse cx="90" cy="95" rx="8" ry="5" fill="#0a0a0a" stroke="#444" stroke-width="1"/>
+                <ellipse cx="110" cy="95" rx="8" ry="5" fill="#0a0a0a" stroke="#444" stroke-width="1"/>
+
+                <!-- Lock mechanism indicators -->
+                <rect x="48" y="73" width="12" height="10" rx="2" fill="#cc0000" opacity="0.9"/>
+                <rect x="120" y="73" width="12" height="10" rx="2" fill="#cc0000" opacity="0.9"/>
+
+                <!-- Lock tabs -->
+                <path d="M48 78 L36 78 L36 88 L48 88" fill="none" stroke="#cc0000" stroke-width="2" stroke-linecap="round"/>
+                <path d="M132 78 L144 78 L144 88 L132 88" fill="none" stroke="#cc0000" stroke-width="2" stroke-linecap="round"/>
+
+                <!-- Lock icons on tabs -->
+                <circle cx="40" cy="83" r="4" fill="none" stroke="#cc0000" stroke-width="1.5"/>
+                <line x1="38" y1="83" x2="42" y2="83" stroke="#cc0000" stroke-width="1.5"/>
+
+                <circle cx="140" cy="83" r="4" fill="none" stroke="#cc0000" stroke-width="1.5"/>
+                <line x1="138" y1="83" x2="142" y2="83" stroke="#cc0000" stroke-width="1.5"/>
+
+                <!-- Cable entry -->
+                <rect x="75" y="125" width="30" height="20" rx="4" fill="#111" stroke="#333" stroke-width="1.5"/>
+                <ellipse cx="90" cy="125" rx="8" ry="3" fill="#0d0d0d" stroke="#222" stroke-width="1"/>
+
+                <!-- IEC Lock text -->
+                <text x="90" y="58" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="11" fill="#cc0000" letter-spacing="1">IEC LOCK™</text>
+
+                <!-- LOCKED badge -->
+                <rect x="62" y="148" width="56" height="18" rx="3" fill="#cc0000" opacity="0.9"/>
+                <text x="90" y="161" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="10" fill="white" letter-spacing="1">LOCKED</text>
+              </svg>
+            </div>
+
+            <div class="diagram-label">
+              מנגנון נעילה דו-צדדי — לשוניות נעילה מימין ומשמאל
+            </div>
+
+            <div class="diagram-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              GB2383202B PATENT
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWS
+  ============================================================ -->
+  <section id="news" aria-labelledby="news-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">עדכונים ופרסומים</span>
+        <h2 class="section-title" id="news-title"><span>חדשות</span></h2>
+        <p class="section-subtitle">
+          עדכונים אחרונים ממשפחת מוצרי IEC Lock
+        </p>
+      </div>
+
+      <div class="news-grid" role="list">
+
+        <article class="news-card" role="listitem" tabindex="0">
+          <div class="news-date">2024 · ינואר</div>
+          <h3 class="news-title">
+            Scolmore מציגה את מחבר ה-C21 IEC Lock™ — המחבר החדש ביותר בסדרה
+          </h3>
+          <p class="news-excerpt">
+            מחבר C21 החדש מרחיב את סדרת IEC Lock לסביבות בטמפרטורות גבוהות.
+            הדגם תומך בקצבי זרם גבוהים יותר ומיועד ליישומים תעשייתיים קשים.
+          </p>
+          <div class="news-read" aria-label="קרא עוד על מחבר C21 IEC Lock">
+            קרא עוד
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+          </div>
+        </article>
+
+        <article class="news-card" role="listitem" tabindex="0">
+          <div class="news-date">2023 · מרץ</div>
+          <h3 class="news-title">
+            IEC Lock מקבל הסמכת CE מורחבת לשימוש בציוד רפואי
+          </h3>
+          <p class="news-excerpt">
+            לאחר תהליך בדיקה מקיף, קיבלה סדרת IEC Lock הסמכת CE לשימוש בציוד רפואי קריטי.
+            ההסמכה פותחת דלתות לשוק הבריאות האירופאי.
+          </p>
+          <div class="news-read" aria-label="קרא עוד על הסמכת CE לציוד רפואי">
+            קרא עוד
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+          </div>
+        </article>
+
+        <article class="news-card" role="listitem" tabindex="0">
+          <div class="news-date">2022 · ספטמבר</div>
+          <h3 class="news-title">
+            שותפות חדשה עם ספקי PDU מובילים בשוק הבינלאומי
+          </h3>
+          <p class="news-excerpt">
+            Scolmore חתמה על הסכמי שיתוף פעולה עם יצרני PDU מובילים בעולם לשילוב
+            מנגנון IEC Lock במוצריהם כחלק סטנדרטי.
+          </p>
+          <div class="news-read" aria-label="קרא עוד על שותפות PDU">
+            קרא עוד
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="tag">פנו אלינו</span>
+        <h2 class="section-title" id="contact-title">צור <span>קשר</span></h2>
+        <p class="section-subtitle">
+          לפרטים נוספים, מחירים והזמנות — צוות Scolmore זמין לשירותכם
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Info -->
+        <div class="contact-info">
+          <h3>Scolmore Group</h3>
+          <div class="contact-address">
+            Scolmore House, Mariner<br />
+            Lichfield Road Industrial Estate<br />
+            Tamworth, Staffordshire<br />
+            B79 7UL<br />
+            United Kingdom
+          </div>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11 19.79 19.79 0 0 1 1.61 2.34a2 2 0 0 1 1.88-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:0.72rem;color:var(--text-muted);font-weight:600;letter-spacing:0.08em;margin-bottom:2px">טלפון</div>
+                <a href="tel:+441827063454" dir="ltr">+44 (0) 1827 63454</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 2 11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+              <div>
+                <div style="font-size:0.72rem;color:var(--text-muted);font-weight:600;letter-spacing:0.08em;margin-bottom:2px">פקס</div>
+                <span dir="ltr">+44 (0) 1827 63362</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div style="font-size:0.72rem;color:var(--text-muted);font-weight:600;letter-spacing:0.08em;margin-bottom:2px">מכירות OEM</div>
+                <a href="mailto:oemsales@scolmore.com">oemsales@scolmore.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div style="font-size:0.72rem;color:var(--text-muted);font-weight:600;letter-spacing:0.08em;margin-bottom:2px">מכירות בינלאומיות</div>
+                <a href="mailto:exportsales@scolmore.com">exportsales@scolmore.com</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patent box -->
+          <div style="margin-top:2rem;padding:1.25rem;background:var(--bg-tertiary);border:1px solid var(--border);border-right:3px solid var(--red);border-radius:var(--radius);">
+            <div style="font-family:var(--font-lat);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;color:var(--red);text-transform:uppercase;margin-bottom:0.5rem;">מוגן בפטנט</div>
+            <div style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;">
+              פטנט בריטי מס׳ <strong style="color:var(--text-primary);font-family:var(--font-lat);">GB2383202B</strong><br/>
+              IEC Lock הינה סימן מסחרי רשום של Scolmore Group
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <h3>שלח הודעה</h3>
+          <form action="#" method="POST" aria-label="טופס יצירת קשר" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">שם פרטי</label>
+                <input type="text" id="fname" name="fname" autocomplete="given-name" placeholder="ישראל" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">שם משפחה</label>
+                <input type="text" id="lname" name="lname" autocomplete="family-name" placeholder="ישראלי" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">כתובת אימייל</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="israel@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="company">חברה</label>
+              <input type="text" id="company" name="company" placeholder="שם החברה" />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">נושא</label>
+              <select id="subject" name="subject">
+                <option value="">בחר נושא...</option>
+                <option value="products">מידע על מוצרים</option>
+                <option value="pricing">מחירים והצעת מחיר</option>
+                <option value="oem">שיתוף פעולה OEM</option>
+                <option value="technical">תמיכה טכנית</option>
+                <option value="other">אחר</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">הודעה</label>
+              <textarea id="message" name="message" placeholder="כתוב את הודעתך כאן..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;" aria-label="שלח הודעה">
+              שלח הודעה
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-top">
+          <!-- Logo -->
+          <div class="footer-logo" aria-label="IEC Lock">
+            IEC LO<span class="k">K</span>™
+          </div>
+
+          <!-- Footer Nav -->
+          <nav class="footer-nav" aria-label="ניווט תחתית">
+            <a href="#products">מוצרים</a>
+            <a href="#applications">יישומים</a>
+            <a href="#how">איך זה עובד</a>
+            <a href="#why">מידע טכני</a>
+            <a href="#news">חדשות</a>
+            <a href="#contact">צור קשר</a>
+          </nav>
+
+          <!-- Social -->
+          <div class="footer-social" role="list" aria-label="רשתות חברתיות">
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד Facebook" target="_blank" rel="noopener noreferrer">
+              <!-- Facebook icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד Twitter / X" target="_blank" rel="noopener noreferrer">
+              <!-- X / Twitter icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד LinkedIn" target="_blank" rel="noopener noreferrer">
+              <!-- LinkedIn icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="ערוץ YouTube" target="_blank" rel="noopener noreferrer">
+              <!-- YouTube icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0a0a0a"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-divider" role="separator"></div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            <p>
+              &copy; 2018–2024 Scolmore Group. כל הזכויות שמורות.<br />
+              IEC Lock™ הינה סימן מסחרי רשום של <a href="https://scolmore.com" target="_blank" rel="noopener noreferrer">Scolmore Group Ltd</a>.
+            </p>
+          </div>
+          <div class="footer-patents">
+            <span class="footer-patent-badge">פטנט בריטי מס׳ GB2383202B</span>
+            <span class="footer-patent-badge" style="font-size:0.65rem;color:var(--text-muted);">מוגן בפטנטים בינלאומיים נוספים</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       VANILLA JS — Sticky nav + mobile menu
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* --- Sticky nav on scroll --- */
+      var nav = document.getElementById('nav');
+      var THRESHOLD = 60;
+
+      function onScroll() {
+        if (window.scrollY > THRESHOLD) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load
+
+      /* --- Mobile hamburger menu --- */
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      /* Close mobile menu when a link is clicked */
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      /* Close mobile menu on outside click */
+      document.addEventListener('click', function (e) {
+        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      /* --- Smooth scroll polyfill for older browsers --- */
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href').slice(1);
+          if (!targetId) return;
+          var target = document.getElementById(targetId);
+          if (!target) return;
+          e.preventDefault();
+          var navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 72;
+          var top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        });
+      });
+
+      /* --- Intersection Observer for scroll-reveal animation --- */
+      if ('IntersectionObserver' in window) {
+        var revealItems = document.querySelectorAll('.product-card, .why-card, .app-card, .news-card, .how-step, .stat-item');
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+        revealItems.forEach(function (item, idx) {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+          item.style.transition = 'opacity 0.5s ease ' + (idx % 4 * 0.08) + 's, transform 0.5s ease ' + (idx % 4 * 0.08) + 's';
+          observer.observe(item);
+        });
+      }
+
+      /* --- Keyboard accessibility for card elements --- */
+      document.querySelectorAll('[tabindex="0"]').forEach(function (el) {
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            el.click();
+          }
+        });
+      });
+
+      /* --- Form submission handling --- */
+      var form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var btn = form.querySelector('button[type="submit"]');
+          var originalText = btn.innerHTML;
+          btn.innerHTML = 'ההודעה נשלחה! <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+          btn.style.background = '#1a7a1a';
+          btn.style.borderColor = '#1a7a1a';
+          btn.disabled = true;
+          setTimeout(function () {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+            btn.disabled = false;
+            form.reset();
+          }, 4000);
+        });
+      }
+
+    }());
+  </script>
+
+</body>
+</html>
