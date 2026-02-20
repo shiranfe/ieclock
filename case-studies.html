@@ -108,17 +108,17 @@
     }
 
     .nav-logo {
-      font-family: var(--font-lat);
-      font-weight: 900;
-      font-size: 1.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-primary);
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
       flex-shrink: 0;
+      height: 100%;
     }
 
-    .nav-logo .k { color: var(--red); }
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
 
     .nav-menu {
       display: flex;
@@ -637,15 +637,16 @@
     }
 
     .footer-logo {
-      font-family: var(--font-lat);
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
     }
 
-    .footer-logo .k { color: var(--red); }
+    .footer-logo img {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
 
     .footer-nav {
       display: flex;
@@ -785,7 +786,7 @@
     <div class="nav-inner">
       <!-- Logo -->
       <a href="index.html" class="nav-logo" aria-label="IEC Lock דף הבית">
-        IEC LO<span class="k">K</span>™
+        <img src="assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="eager" />
       </a>
 
       <!-- Desktop menu -->
@@ -1088,7 +1089,7 @@
         <div class="footer-top">
           <!-- Logo -->
           <div class="footer-logo" aria-label="IEC Lock">
-            IEC LO<span class="k">K</span>™
+            <img src="assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="lazy" />
           </div>
 
           <!-- Footer Nav -->

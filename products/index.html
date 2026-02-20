@@ -81,16 +81,17 @@
     }
 
     .nav-logo {
-      font-family: var(--font-lat);
-      font-weight: 900;
-      font-size: 1.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-primary);
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
       flex-shrink: 0;
+      height: 100%;
     }
-    .nav-logo .k { color: var(--red); }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
 
     .nav-menu {
       display: flex;
@@ -312,14 +313,16 @@
     }
 
     .footer-logo {
-      font-family: var(--font-lat);
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
     }
-    .footer-logo .k { color: var(--red); }
+
+    .footer-logo img {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
 
     .footer-nav {
       display: flex;
@@ -410,7 +413,7 @@
   <nav id="nav" role="navigation" aria-label="ניווט ראשי">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo" aria-label="IEC Lock דף הבית">
-        IEC LO<span class="k">K</span>™
+        <img src="../assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="eager" />
       </a>
       <ul class="nav-menu" role="list">
         <li><a href="../index.html#products">מוצרים</a></li>
@@ -609,7 +612,7 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-top">
-          <div class="footer-logo" aria-label="IEC Lock">IEC LO<span class="k">K</span>™</div>
+          <div class="footer-logo" aria-label="IEC Lock"><img src="../assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="lazy" /></div>
           <nav class="footer-nav" aria-label="ניווט תחתית">
             <a href="../index.html#products">מוצרים</a>
             <a href="../index.html#applications">יישומים</a>

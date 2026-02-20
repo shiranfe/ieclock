@@ -17,8 +17,18 @@
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
     #nav { position: fixed; top: 0; right: 0; left: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; background: rgba(10,10,10,0.97); border-bottom: 1px solid var(--border); box-shadow: 0 4px 32px rgba(0,0,0,0.6); backdrop-filter: blur(12px); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-    .nav-logo { font-family: var(--font-lat); font-weight: 900; font-size: 1.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); white-space: nowrap; flex-shrink: 0; }
-    .nav-logo .k { color: var(--red); }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      height: 100%;
+    }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
     .nav-menu { display: flex; align-items: center; gap: 0; }
     .nav-menu a { font-family: var(--font-heb); font-size: 0.88rem; font-weight: 600; color: var(--text-secondary); padding: 8px 14px; border-radius: var(--radius); transition: color var(--transition), background var(--transition); white-space: nowrap; }
     .nav-menu a:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
@@ -61,8 +71,17 @@
     footer { background: #000; border-top: 1px solid var(--border); padding: 3rem 0; }
     .footer-inner { display: flex; flex-direction: column; gap: 2rem; }
     .footer-top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; }
-    .footer-logo { font-family: var(--font-lat); font-size: 1.6rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); }
-    .footer-logo .k { color: var(--red); }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .footer-logo img {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
     .footer-nav { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; }
     .footer-nav a { font-size: 0.82rem; color: var(--text-muted); padding: 4px 12px; transition: color var(--transition); }
     .footer-nav a:hover { color: var(--text-secondary); }
@@ -82,7 +101,7 @@
 <body>
   <nav id="nav" role="navigation" aria-label="ניווט ראשי">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">IEC LO<span class="k">K</span>™</a>
+      <a href="../index.html" class="nav-logo" aria-label="IEC Lock דף הבית"><img src="../assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="eager" /></a>
       <ul class="nav-menu" role="list">
         <li><a href="../index.html#products">מוצרים</a></li>
         <li><a href="../index.html#applications">יישומים</a></li>
@@ -163,7 +182,7 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-top">
-          <div class="footer-logo">IEC LO<span class="k">K</span>™</div>
+          <div class="footer-logo"><img src="../assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="lazy" /></div>
           <nav class="footer-nav" aria-label="ניווט תחתית">
             <a href="../index.html#products">מוצרים</a><a href="../index.html#applications">יישומים</a>
             <a href="../index.html#how">איך זה עובד</a><a href="../index.html#why">מידע טכני</a>

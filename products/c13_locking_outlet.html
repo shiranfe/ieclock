@@ -14,7 +14,18 @@
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
     #nav { position: fixed; top: 0; right: 0; left: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; background: rgba(10,10,10,0.97); border-bottom: 1px solid var(--border); box-shadow: 0 4px 32px rgba(0,0,0,0.6); backdrop-filter: blur(12px); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-    .nav-logo { font-family: var(--font-lat); font-weight: 900; font-size: 1.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); white-space: nowrap; } .nav-logo .k { color: var(--red); }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      height: 100%;
+    }
+
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
     .nav-menu { display: flex; align-items: center; } .nav-menu a { font-family: var(--font-heb); font-size: 0.88rem; font-weight: 600; color: var(--text-secondary); padding: 8px 14px; border-radius: var(--radius); transition: color var(--transition), background var(--transition); } .nav-menu a:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
     .nav-cta { color: var(--text-primary) !important; background: var(--red) !important; padding: 8px 18px !important; border-radius: var(--radius) !important; font-weight: 700 !important; margin-right: 8px; } .nav-cta:hover { background: var(--red-bright) !important; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: none; } .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: transform var(--transition), opacity var(--transition); }
@@ -37,7 +48,17 @@
     .spec-value { background: var(--bg-card); padding: 1rem 1.25rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; font-family: var(--font-lat); }
     .back-wrap { padding: 0 0 64px; text-align: center; } .btn-back { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heb); font-size: 0.95rem; font-weight: 700; color: var(--red); border: 2px solid var(--red); padding: 12px 28px; border-radius: var(--radius); transition: background var(--transition), color var(--transition); } .btn-back:hover { background: var(--red); color: #fff; }
     footer { background: #000; border-top: 1px solid var(--border); padding: 3rem 0; } .footer-inner { display: flex; flex-direction: column; gap: 2rem; }
-    .footer-top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; } .footer-logo { font-family: var(--font-lat); font-size: 1.6rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); } .footer-logo .k { color: var(--red); }
+    .footer-top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; } .footer-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .footer-logo img {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
     .footer-nav { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; } .footer-nav a { font-size: 0.82rem; color: var(--text-muted); padding: 4px 12px; transition: color var(--transition); } .footer-nav a:hover { color: var(--text-secondary); }
     .footer-social { display: flex; gap: 0.5rem; } .social-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-muted); transition: color var(--transition), border-color var(--transition), background var(--transition); } .social-btn:hover { color: var(--text-primary); border-color: var(--text-muted); background: rgba(255,255,255,0.05); }
     .footer-divider { height: 1px; background: var(--border); } .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
@@ -49,7 +70,7 @@
 <body>
   <nav id="nav" role="navigation" aria-label="ניווט ראשי">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">IEC LO<span class="k">K</span>&#x2122;</a>
+      <a href="../index.html" class="nav-logo" aria-label="IEC Lock דף הבית"><img src="../assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="eager" /></a>
       <ul class="nav-menu" role="list">
         <li><a href="../index.html#products">מוצרים</a></li><li><a href="../index.html#applications">יישומים</a></li>
         <li><a href="../index.html#how">איך זה עובד</a></li><li><a href="../index.html#why">מידע טכני</a></li>
@@ -96,7 +117,7 @@
   <div class="back-wrap"><a href="index.html" class="btn-back">&#x2190; חזרה למוצרים</a></div>
   <footer role="contentinfo"><div class="container"><div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-logo">IEC LO<span class="k">K</span>&#x2122;</div>
+      <div class="footer-logo"><img src="../assets/img/iec-lock-logo-red.svg" alt="IEC Lock" loading="lazy" /></div>
       <nav class="footer-nav"><a href="../index.html#products">מוצרים</a><a href="../index.html#applications">יישומים</a><a href="../index.html#how">איך זה עובד</a><a href="../index.html#why">מידע טכני</a><a href="../index.html#news">חדשות</a><a href="../index.html#contact">צור קשר</a></nav>
       <div class="footer-social"><a href="#" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div>
     </div>
