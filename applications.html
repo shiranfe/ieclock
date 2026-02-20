@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="יישומי IEC Lock — מחברי IEC נעילה פטנטיים לימאות, רפואה, צבאי, שידור, מרכזי נתונים ועוד." />
+  <title>יישומים — IEC Lock™</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red:          #cc0000;
+      --red-bright:   #e00000;
+      --red-dark:     #990000;
+      --bg-primary:   #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-tertiary:  #1a1a1a;
+      --bg-card:      #161616;
+      --bg-card-hover:#1e1e1e;
+      --border:       #2a2a2a;
+      --border-red:   rgba(204,0,0,0.4);
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --text-muted:   #666666;
+      --font-heb: 'Heebo', sans-serif;
+      --font-lat: 'Barlow Condensed', sans-serif;
+      --nav-h: 72px;
+      --transition: 0.25s ease;
+      --radius: 4px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-heb);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    img  { max-width: 100%; display: block; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-heb);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.25em;
+      line-height: 1.1;
+    }
+
+    .section-title span { color: var(--red); }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 3rem;
+      max-width: 640px;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .red-line {
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heb);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      background: var(--red);
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-bright);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heb);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: transparent;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+      background: rgba(10, 10, 10, 0.97);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    #nav.scrolled {
+      background: rgba(10, 10, 10, 0.99);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-lat);
+      font-weight: 900;
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo .k { color: var(--red); }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-menu a {
+      font-family: var(--font-heb);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-menu a.active {
+      color: var(--text-primary);
+      border-bottom: 2px solid var(--red);
+      border-radius: 0;
+      padding-bottom: 6px;
+    }
+
+    .nav-cta {
+      font-family: var(--font-heb) !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: var(--text-primary) !important;
+      background: var(--red) !important;
+      padding: 8px 18px !important;
+      border-radius: var(--radius) !important;
+      transition: background var(--transition) !important;
+      margin-right: 8px;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-bright) !important;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      border: none;
+      background: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      right: 0;
+      left: 0;
+      background: rgba(10,10,10,0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 24px;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 999;
+    }
+
+    .nav-mobile.open { display: flex; }
+
+    .nav-mobile a {
+      font-family: var(--font-heb);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover     { color: var(--red); }
+    .nav-mobile a.active    { color: var(--text-primary); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      background: var(--bg-primary);
+    }
+
+    /* Grid overlay texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(204,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204,0,0,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      z-index: 1;
+    }
+
+    /* Radial red glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(204,0,0,0.15) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .hero-red-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--red) 0%, transparent 80%);
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 140px 24px 80px;
+      max-width: 860px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-lat);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .hero-title {
+      font-family: var(--font-heb);
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--text-primary);
+      margin-bottom: 0.3em;
+    }
+
+    .hero-title .accent { color: var(--red); }
+
+    .hero-subtitle {
+      font-family: var(--font-heb);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+    }
+
+    .hero-desc {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       APPLICATIONS GRID
+    ============================================================ */
+    #applications {
+      padding: 80px 0;
+      background: var(--bg-primary);
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+    }
+
+    .app-tile {
+      position: relative;
+      min-height: 350px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* Background image layer */
+    .app-tile-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--bg-tertiary); /* fallback when image missing */
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 0;
+    }
+
+    /* Dark overlay */
+    .app-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.52);
+      transition: background var(--transition);
+      z-index: 1;
+    }
+
+    /* Gradient overlay at bottom for text legibility */
+    .app-tile-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.3) 45%,
+        transparent 100%
+      );
+      z-index: 2;
+      transition: opacity var(--transition);
+    }
+
+    /* Hover states */
+    .app-tile:hover .app-tile-bg {
+      transform: scale(1.05);
+    }
+
+    .app-tile:hover .app-tile-overlay {
+      background: rgba(0,0,0,0.35);
+    }
+
+    .app-tile:hover .app-tile-gradient {
+      opacity: 0.9;
+    }
+
+    /* Red accent bar on hover */
+    .app-tile::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+      z-index: 4;
+    }
+
+    .app-tile:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Text content */
+    .app-tile-body {
+      position: relative;
+      z-index: 3;
+      padding: 28px 28px 30px;
+      width: 100%;
+    }
+
+    .app-tile-name {
+      font-family: var(--font-heb);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 0.45rem;
+    }
+
+    .app-tile-desc {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+      max-width: 340px;
+    }
+
+    /* Tile category icon line */
+    .app-tile-tag {
+      display: inline-block;
+      font-family: var(--font-lat);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid rgba(204,0,0,0.5);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ============================================================
+       WHY IEC LOCK SECTION
+    ============================================================ */
+    #why {
+      background: var(--bg-secondary);
+      padding: 96px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .why-header .red-line {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .why-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-red);
+      transform: translateY(-3px);
+    }
+
+    /* Red left border accent (right in RTL) */
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 3px;
+      height: 0;
+      background: var(--red);
+      transition: height 0.35s ease;
+    }
+
+    .why-card:hover::before {
+      height: 100%;
+    }
+
+    .why-icon {
+      font-size: 2.25rem;
+      margin-bottom: 1.25rem;
+      display: block;
+      line-height: 1;
+    }
+
+    .why-card-title {
+      font-family: var(--font-heb);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .why-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .why-card-badge {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-family: var(--font-lat);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red-dark);
+    }
+
+    /* ============================================================
+       CTA SECTION
+    ============================================================ */
+    #cta {
+      background: var(--bg-primary);
+      padding: 96px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(204,0,0,0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-inner .red-line {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-title {
+      font-family: var(--font-heb);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .cta-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-lat);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .footer-logo .k { color: var(--red); }
+
+    .footer-nav {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 4px 12px;
+      transition: color var(--transition);
+    }
+
+    .footer-nav a:hover { color: var(--text-secondary); }
+
+    .footer-social {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .social-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-copy a { color: var(--text-muted); transition: color var(--transition); }
+    .footer-copy a:hover { color: var(--text-secondary); }
+
+    .footer-patents {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .footer-patent-badge {
+      font-family: var(--font-lat);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--red-dark);
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in             { animation: fadeInUp 0.6s ease forwards; }
+    .fade-in-delay-1     { animation-delay: 0.1s;  opacity: 0; }
+    .fade-in-delay-2     { animation-delay: 0.25s; opacity: 0; }
+    .fade-in-delay-3     { animation-delay: 0.4s;  opacity: 0; }
+    .fade-in-delay-4     { animation-delay: 0.55s; opacity: 0; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-top  { grid-template-columns: 1fr; text-align: center; }
+      .footer-nav  { justify-content: center; }
+      .footer-social { justify-content: center; }
+      .why-grid    { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+      section { padding: 64px 0; }
+      #applications { padding: 56px 0; }
+
+      .nav-menu      { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-tile { min-height: 300px; }
+
+      .why-grid { grid-template-columns: 1fr; }
+
+      .hero-content { padding: 120px 24px 60px; }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-patents { align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(3rem, 18vw, 4.5rem); }
+      .app-tile-body { padding: 20px 20px 24px; }
+    }
+
+    /* ============================================================
+       SECTION LABEL BAR
+    ============================================================ */
+    .section-label-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label-bar .label {
+      font-family: var(--font-lat);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      white-space: nowrap;
+    }
+
+    .section-label-bar .line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="ניווט ראשי">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="IEC Lock דף הבית">
+        IEC LO<span class="k">K</span>™
+      </a>
+
+      <!-- Desktop menu -->
+      <ul class="nav-menu" role="list">
+        <li><a href="products/index.html">מוצרים</a></li>
+        <li><a href="applications.html" class="active" aria-current="page">יישומים</a></li>
+        <li><a href="how-it-works.html">איך זה עובד</a></li>
+        <li><a href="#">מידע טכני</a></li>
+        <li><a href="#">חדשות</a></li>
+        <li><a href="case-studies.html">מקרי בוחן</a></li>
+        <li><a href="index.html#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="mobile-menu" role="menu" aria-label="תפריט נייד">
+    <a href="products/index.html" role="menuitem">מוצרים</a>
+    <a href="applications.html" role="menuitem" class="active" aria-current="page">יישומים</a>
+    <a href="how-it-works.html" role="menuitem">איך זה עובד</a>
+    <a href="#" role="menuitem">מידע טכני</a>
+    <a href="#" role="menuitem">חדשות</a>
+    <a href="case-studies.html" role="menuitem">מקרי בוחן</a>
+    <a href="index.html#contact" role="menuitem">צור קשר</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" aria-labelledby="hero-title">
+    <div class="hero-red-line" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow fade-in" aria-hidden="true">
+        <span>IEC Lock™</span>
+        <span>Applications</span>
+      </div>
+
+      <h1 class="hero-title fade-in fade-in-delay-1" id="hero-title">
+        <span class="accent">יישו</span>מים
+      </h1>
+
+      <p class="hero-subtitle fade-in fade-in-delay-2">
+        IEC Lock מתאים לכל תנאי — מהים הפתוח ועד אולפן ההקלטה
+      </p>
+
+      <p class="hero-desc fade-in fade-in-delay-3">
+        מחברי IEC Lock מתאימים לשימוש עם כל שקע C14 או C20 סטנדרטי.
+        מגינים על מכשירים הרגישים לרטט וניתוק מקרי.
+        המחבר לא יכול להינתק בטעות.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       APPLICATIONS GRID
+  ============================================================ -->
+  <section id="applications" aria-label="יישומים">
+    <div class="container">
+
+      <div class="section-label-bar" aria-hidden="true">
+        <span class="label">IEC Lock Applications</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="apps-grid" role="list">
+
+        <!-- 1. Maritime -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="ימאות — הגנה על מכשירים מפני ניתוק עקב רטט">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/maritime-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Maritime</span>
+            <h2 class="app-tile-name">ימאות</h2>
+            <p class="app-tile-desc">הגנה על מכשירים מפני ניתוק עקב רטט</p>
+          </div>
+        </article>
+
+        <!-- 2. Motor Racing -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="מירוצי מנועים — חיבור 100% לציוד נייד">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/motor-racing-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Motor Racing</span>
+            <h2 class="app-tile-name">מירוצי מנועים</h2>
+            <p class="app-tile-desc">חיבור 100% לציוד נייד בתחנות הדלק, ללא עיכובים יקרים</p>
+          </div>
+        </article>
+
+        <!-- 3. Medical -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="יישומים רפואיים — אספקת חשמל רציפה קריטית">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/medical-application-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Medical</span>
+            <h2 class="app-tile-name">יישומים רפואיים</h2>
+            <p class="app-tile-desc">אספקת חשמל רציפה קריטית בכל עת</p>
+          </div>
+        </article>
+
+        <!-- 4. Military -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="צבאי — הגנה מפני ניתוק עקב רטט">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/military-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Military</span>
+            <h2 class="app-tile-name">צבאי</h2>
+            <p class="app-tile-desc">הגנה מפני כל סוג של ניתוק עקב רטט</p>
+          </div>
+        </article>
+
+        <!-- 5. Outside Broadcasting -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="שידור חוץ — אספקת חשמל רציפה קריטית לציוד שידור">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/outside-broadcasting-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Outside Broadcasting</span>
+            <h2 class="app-tile-name">שידור חוץ</h2>
+            <p class="app-tile-desc">אספקת חשמל רציפה קריטית לציוד שידור</p>
+          </div>
+        </article>
+
+        <!-- 6. Data Centres -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="מרכזי נתונים — הגנה מפני ניתוק מקרי של חיבורי כבלים">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/data-centres-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Data Centres</span>
+            <h2 class="app-tile-name">מרכזי נתונים</h2>
+            <p class="app-tile-desc">הגנה מפני ניתוק מקרי של חיבורי כבלים רבים</p>
+          </div>
+        </article>
+
+        <!-- 7. Recording Studios -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="אולפני הקלטה — הגנת ציוד יקר מניתוק מקרי">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/vending-machines-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">Recording Studios</span>
+            <h2 class="app-tile-name">אולפני הקלטה</h2>
+            <p class="app-tile-desc">הגנת ציוד יקר מניתוק מקרי</p>
+          </div>
+        </article>
+
+        <!-- 8. PDU -->
+        <article class="app-tile" role="listitem" tabindex="0" aria-label="PDU — שמירה על פעילות ציוד חיוני בכל עת">
+          <div class="app-tile-bg" style="background-image: url('assets/img/applications/pdus-bg.jpg');" aria-hidden="true"></div>
+          <div class="app-tile-overlay" aria-hidden="true"></div>
+          <div class="app-tile-gradient" aria-hidden="true"></div>
+          <div class="app-tile-body">
+            <span class="app-tile-tag">PDU</span>
+            <h2 class="app-tile-name">PDU</h2>
+            <p class="app-tile-desc">שמירה על פעילות ציוד חיוני בכל עת, מניעת השבתה</p>
+          </div>
+        </article>
+
+      </div><!-- /.apps-grid -->
+    </div><!-- /.container -->
+  </section>
+
+  <!-- ============================================================
+       WHY IEC LOCK?
+  ============================================================ -->
+  <section id="why" aria-labelledby="why-title">
+    <div class="container">
+
+      <div class="why-header">
+        <span class="red-line" aria-hidden="true"></span>
+        <h2 class="section-title" id="why-title">
+          למה <span>IEC Lock</span> לתעשייה שלך?
+        </h2>
+        <p class="section-subtitle" style="margin: 0.75rem auto 0; text-align: center;">
+          טכנולוגיה פטנטית מוכחת בשדה, בכל תנאי ובכל סביבה תעשייתית
+        </p>
+      </div>
+
+      <div class="why-grid" role="list">
+
+        <!-- Card 1 -->
+        <div class="why-card" role="listitem">
+          <span class="why-icon" aria-hidden="true">🔒</span>
+          <h3 class="why-card-title">נעילה פטנטית</h3>
+          <p class="why-card-desc">
+            מנגנון הנעילה הפטנטי של IEC Lock מונע ניתוק מקרי בכל תנאי — רטט, מכות, תנועה ולחץ.
+            פטנט בריטי מס׳ GB2383202B מוגן גם בינלאומית.
+          </p>
+          <span class="why-card-badge">Patent No. GB2383202B</span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="why-card" role="listitem">
+          <span class="why-icon" aria-hidden="true">⚡</span>
+          <h3 class="why-card-title">תואם כל תקן IEC</h3>
+          <p class="why-card-desc">
+            מחברי IEC Lock תואמים לחלוטין לכל שקע C14 ו-C20 סטנדרטי — ללא צורך בהתאמות, מתאמים או כלים מיוחדים.
+            התקנה מיידית.
+          </p>
+          <span class="why-card-badge">IEC 60320 Compatible</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="why-card" role="listitem">
+          <span class="why-icon" aria-hidden="true">🛡️</span>
+          <h3 class="why-card-title">מוכן בשדה</h3>
+          <p class="why-card-desc">
+            פרוס בהצלחה בסביבות הקשות ביותר בעולם — ימאות, צבאי, שידור חוץ ומרכזי נתונים. אמינות מוכחת בתנאי קצה.
+          </p>
+          <span class="why-card-badge">Field Proven Technology</span>
+        </div>
+
+      </div><!-- /.why-grid -->
+    </div><!-- /.container -->
+  </section>
+
+  <!-- ============================================================
+       CTA SECTION
+  ============================================================ -->
+  <section id="cta" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-inner">
+        <span class="red-line" aria-hidden="true"></span>
+        <h2 class="cta-title" id="cta-title">מעוניינים בפתרון מותאם?</h2>
+        <p class="cta-desc">
+          צוות המומחים שלנו יסייע לכם לבחור את המחבר המתאים לתעשייה שלכם.
+          פנו אלינו לייעוץ חינם ולהצעת מחיר.
+        </p>
+        <div class="cta-buttons">
+          <a href="index.html#contact" class="btn-primary" aria-label="צור קשר לפתרון מותאם">
+            צור קשר עכשיו
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+          </a>
+          <a href="products/index.html" class="btn-secondary" aria-label="צפה במוצרים">
+            צפה במוצרים
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-top">
+          <!-- Logo -->
+          <div class="footer-logo" aria-label="IEC Lock">
+            IEC LO<span class="k">K</span>™
+          </div>
+
+          <!-- Footer Nav -->
+          <nav class="footer-nav" aria-label="ניווט תחתית">
+            <a href="products/index.html">מוצרים</a>
+            <a href="applications.html">יישומים</a>
+            <a href="how-it-works.html">איך זה עובד</a>
+            <a href="#">מידע טכני</a>
+            <a href="#">חדשות</a>
+            <a href="index.html#contact">צור קשר</a>
+          </nav>
+
+          <!-- Social -->
+          <div class="footer-social" role="list" aria-label="רשתות חברתיות">
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד Facebook" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד Twitter / X" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד LinkedIn" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="ערוץ YouTube" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-divider" role="separator"></div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            <p>
+              &copy; 2018–2024 Scolmore Group. כל הזכויות שמורות.<br />
+              IEC Lock™ הינה סימן מסחרי רשום של <a href="https://scolmore.com" target="_blank" rel="noopener noreferrer">Scolmore Group Ltd</a>.
+            </p>
+          </div>
+          <div class="footer-patents">
+            <span class="footer-patent-badge">פטנט בריטי מס׳ GB2383202B</span>
+            <span class="footer-patent-badge" style="font-size:0.65rem;color:var(--text-muted);">מוגן בפטנטים בינלאומיים נוספים</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JS — Sticky nav + mobile hamburger
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* Sticky nav on scroll */
+      var nav       = document.getElementById('nav');
+      var THRESHOLD = 60;
+
+      function onScroll() {
+        if (window.scrollY > THRESHOLD) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* Mobile hamburger */
+      var hamburger  = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      /* Close mobile menu when a link is tapped */
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      /* Close mobile menu on outside click */
+      document.addEventListener('click', function (e) {
+        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      /* Keyboard: open tile on Enter/Space for accessibility */
+      document.querySelectorAll('.app-tile[tabindex]').forEach(function (tile) {
+        tile.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            tile.click();
+          }
+        });
+      });
+
+    }());
+  </script>
+
+</body>
+</html>

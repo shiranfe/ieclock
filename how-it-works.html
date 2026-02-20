@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="איך עובד IEC Lock — גלו כיצד מנגנון הנעילה הייחודי מספק חיבור מאובטח לחלוטין. סרטוני הדגמה ומידע טכני." />
+  <title>איך זה עובד — IEC Lock™</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red:          #cc0000;
+      --red-bright:   #e00000;
+      --red-dark:     #990000;
+      --bg-primary:   #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-tertiary:  #1a1a1a;
+      --bg-card:      #161616;
+      --bg-card-hover:#1e1e1e;
+      --border:       #2a2a2a;
+      --border-red:   rgba(204,0,0,0.4);
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --text-muted:   #666666;
+      --font-heb: 'Heebo', sans-serif;
+      --font-lat: 'Barlow Condensed', sans-serif;
+      --nav-h: 72px;
+      --transition: 0.25s ease;
+      --radius: 4px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-heb);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    img  { max-width: 100%; display: block; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-heb);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.25em;
+      line-height: 1.1;
+    }
+
+    .section-title span { color: var(--red); }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 3rem;
+      max-width: 640px;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .red-line {
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid var(--red-dark);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+      background: rgba(10, 10, 10, 0.97);
+      border-bottom: 1px solid var(--border);
+    }
+
+    #nav.scrolled {
+      background: rgba(10, 10, 10, 0.98);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-lat);
+      font-weight: 900;
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo .k { color: var(--red); }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-menu a {
+      font-family: var(--font-heb);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-menu a.active {
+      color: var(--red);
+    }
+
+    .nav-cta {
+      font-family: var(--font-heb) !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: var(--text-primary) !important;
+      background: var(--red) !important;
+      padding: 8px 18px !important;
+      border-radius: var(--radius) !important;
+      transition: background var(--transition) !important;
+      margin-right: 8px;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-bright) !important;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      border: none;
+      background: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      right: 0;
+      left: 0;
+      background: rgba(10,10,10,0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 24px;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 999;
+    }
+
+    .nav-mobile.open { display: flex; }
+
+    .nav-mobile a {
+      font-family: var(--font-heb);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--red); }
+    .nav-mobile a.active { color: var(--red); }
+
+    /* ============================================================
+       PAGE HERO (compact ~50vh)
+    ============================================================ */
+    #page-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-primary);
+      padding-top: var(--nav-h);
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Grid overlay */
+    .page-hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(204,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204,0,0,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      z-index: 1;
+    }
+
+    /* Radial red glow */
+    .page-hero-bg::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(204,0,0,0.14) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .page-hero-stripe {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 60px 24px 56px;
+      max-width: 800px;
+    }
+
+    .page-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-lat);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero-eyebrow::before,
+    .page-hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .page-hero-title {
+      font-family: var(--font-heb);
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    .page-hero-title span { color: var(--red); }
+
+    .page-hero-subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       HOW IT WORKS — 3-STEP PROCESS
+    ============================================================ */
+    #how-steps {
+      padding: 88px 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .how-steps-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .how-steps-header .red-line {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      position: relative;
+    }
+
+    /* Connector line between steps */
+    .steps-row::before {
+      content: '';
+      position: absolute;
+      top: 56px;
+      right: calc(33.33% + 1px);
+      left: calc(33.33% + 1px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--border) 0%, var(--red-dark) 50%, var(--border) 100%);
+      z-index: 0;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      position: relative;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+      z-index: 1;
+    }
+
+    .step-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-red);
+      transform: translateY(-4px);
+    }
+
+    /* Red accent bar on top */
+    .step-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .step-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .step-number-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-lat);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 20px rgba(204,0,0,0.4);
+    }
+
+    .step-emoji {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .step-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .step-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       MAIN VIDEO PLAYER
+    ============================================================ */
+    #main-video {
+      padding: 88px 0;
+      background: var(--bg-primary);
+    }
+
+    .main-video-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .main-video-header .red-line {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .main-video-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(204,0,0,0.15);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-caption {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .video-caption::before,
+    .video-caption::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ============================================================
+       VIDEO PLAYLIST — 2x2 GRID
+    ============================================================ */
+    #video-playlist {
+      padding: 88px 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    .playlist-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .playlist-header .red-line {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .playlist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .video-card:hover {
+      border-color: var(--border-red);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .video-card:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 2px;
+    }
+
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .video-thumbnail img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, opacity var(--transition);
+    }
+
+    .video-card:hover .video-thumbnail img {
+      transform: scale(1.05);
+      opacity: 0.85;
+    }
+
+    /* Dark overlay gradient on thumbnail */
+    .video-thumbnail-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55) 0%,
+        transparent 60%
+      );
+      z-index: 1;
+    }
+
+    /* Play button overlay */
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(204,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition), transform var(--transition);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .video-card:hover .play-btn {
+      background: var(--red);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .play-btn svg {
+      margin-right: -3px; /* optical centering for play triangle */
+    }
+
+    .video-card-body {
+      padding: 1rem 1.25rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+      transition: color var(--transition);
+    }
+
+    .video-card:hover .video-card-title {
+      color: var(--red);
+    }
+
+    .video-card-tag {
+      font-family: var(--font-lat);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .video-card-tag::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    /* ============================================================
+       PATENT / TECHNICAL NOTE
+    ============================================================ */
+    #patent-note {
+      padding: 72px 0;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+    }
+
+    .patent-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-red);
+      border-radius: var(--radius);
+      padding: 2.75rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background subtle glow */
+    .patent-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(204,0,0,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Top accent bar */
+    .patent-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .patent-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .patent-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .patent-badge-item {
+      font-family: var(--font-lat);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .patent-badge-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .patent-title {
+      font-family: var(--font-heb);
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .patent-desc {
+      font-size: 0.97rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-lat);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .footer-logo .k { color: var(--red); }
+
+    .footer-nav {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 4px 12px;
+      transition: color var(--transition);
+    }
+
+    .footer-nav a:hover { color: var(--text-secondary); }
+
+    .footer-social {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .social-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-copy a { color: var(--text-muted); transition: color var(--transition); }
+    .footer-copy a:hover { color: var(--text-secondary); }
+
+    .footer-patents {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .footer-patent-badge {
+      font-family: var(--font-lat);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--red-dark);
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in         { animation: fadeInUp 0.6s ease forwards; }
+    .fade-in-delay-1 { animation-delay: 0.12s; opacity: 0; }
+    .fade-in-delay-2 { animation-delay: 0.27s; opacity: 0; }
+    .fade-in-delay-3 { animation-delay: 0.42s; opacity: 0; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr; text-align: center; }
+      .footer-nav { justify-content: center; }
+      .footer-social { justify-content: center; }
+      .footer-patents { align-items: center; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+
+      .nav-menu { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .steps-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .steps-row::before { display: none; }
+
+      .step-card {
+        align-items: flex-end;
+        flex-direction: row-reverse;
+        gap: 1.25rem;
+        padding: 1.5rem;
+      }
+
+      .step-number-circle {
+        margin-bottom: 0;
+        flex-shrink: 0;
+      }
+
+      .step-content { flex: 1; }
+
+      .playlist-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .patent-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .patent-badges { flex-direction: column; gap: 0.25rem; }
+      .patent-badge-sep { display: none; }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .step-card {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .step-number-circle {
+        margin-bottom: 1rem;
+      }
+
+      /* Horizontal scroll for playlist on tiny screens */
+      .playlist-grid {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+      }
+
+      .video-card {
+        scroll-snap-align: start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="ניווט ראשי">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="IEC Lock דף הבית">
+        IEC LO<span class="k">K</span>™
+      </a>
+
+      <!-- Desktop menu -->
+      <ul class="nav-menu" role="list">
+        <li><a href="products/index.html">מוצרים</a></li>
+        <li><a href="applications.html">יישומים</a></li>
+        <li><a href="how-it-works.html" class="active" aria-current="page">איך זה עובד</a></li>
+        <li><a href="#">מידע טכני</a></li>
+        <li><a href="#">חדשות</a></li>
+        <li><a href="case-studies.html">מקרי בוחן</a></li>
+        <li><a href="index.html#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="mobile-menu" role="menu" aria-label="תפריט נייד">
+    <a href="products/index.html" role="menuitem">מוצרים</a>
+    <a href="applications.html" role="menuitem">יישומים</a>
+    <a href="how-it-works.html" role="menuitem" class="active" aria-current="page">איך זה עובד</a>
+    <a href="#" role="menuitem">מידע טכני</a>
+    <a href="#" role="menuitem">חדשות</a>
+    <a href="case-studies.html" role="menuitem">מקרי בוחן</a>
+    <a href="index.html#contact" role="menuitem">צור קשר</a>
+  </div>
+
+  <!-- ============================================================
+       PAGE HERO
+  ============================================================ -->
+  <section id="page-hero" aria-label="איך זה עובד — כותרת">
+    <div class="page-hero-bg">
+      <div class="page-hero-stripe" aria-hidden="true"></div>
+    </div>
+
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow fade-in" aria-hidden="true">
+        <span>IEC Lock™</span>
+        <span>הדגמות וידאו</span>
+      </div>
+
+      <h1 class="page-hero-title fade-in fade-in-delay-1">
+        איך זה <span>עובד</span>
+      </h1>
+
+      <p class="page-hero-subtitle fade-in fade-in-delay-2">
+        גלו כיצד מנגנון הנעילה הייחודי של IEC Lock מספק חיבור מאובטח לחלוטין
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3-STEP PROCESS
+  ============================================================ -->
+  <section id="how-steps" aria-label="שלבי הפעלה">
+    <div class="container">
+      <div class="how-steps-header">
+        <span class="red-line" aria-hidden="true"></span>
+        <h2 class="section-title">תהליך <span>פשוט</span></h2>
+        <p class="section-subtitle">שלושה שלבים בלבד להגנה מלאה על חיבור החשמל שלכם</p>
+      </div>
+
+      <div class="steps-row" role="list">
+
+        <!-- Step 1 -->
+        <div class="step-card" role="listitem">
+          <div class="step-number-circle" aria-hidden="true">1</div>
+          <div class="step-content">
+            <span class="step-emoji" aria-hidden="true">🔌</span>
+            <h3 class="step-title">חבר את המחבר</h3>
+            <p class="step-desc">הכנס את מחבר IEC Lock לכל שקע IEC סטנדרטי — בדיוק כמו מחבר רגיל</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card" role="listitem">
+          <div class="step-number-circle" aria-hidden="true">2</div>
+          <div class="step-content">
+            <span class="step-emoji" aria-hidden="true">🔒</span>
+            <h3 class="step-title">הנעילה מופעלת אוטומטית</h3>
+            <p class="step-desc">ברגע החיבור, מנגנון הנעילה הפטנטי מתחיל לפעול ונועל את המחבר במקומו</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card" role="listitem">
+          <div class="step-number-circle" aria-hidden="true">3</div>
+          <div class="step-content">
+            <span class="step-emoji" aria-hidden="true">✅</span>
+            <h3 class="step-title">חיבור מאובטח לחלוטין</h3>
+            <p class="step-desc">המחבר מאובטח ומוגן מפני ניתוק מקרי, רטט ומשיכה</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN VIDEO PLAYER
+  ============================================================ -->
+  <section id="main-video" aria-label="סרטון הדגמה ראשי">
+    <div class="container">
+      <div class="main-video-header">
+        <span class="red-line" aria-hidden="true"></span>
+        <h2 class="section-title">סרטון <span>הדגמה</span></h2>
+        <p class="section-subtitle" style="margin-left:auto;margin-right:auto;text-align:center;">
+          צפו כיצד מנגנון הנעילה הייחודי של IEC Lock C13 פועל בפועל
+        </p>
+      </div>
+
+      <div class="main-video-wrapper">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/c49fc5ZckwY"
+            title="How it Works — IEC Lock C13 Connector"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            aria-label="סרטון הדגמה: כיצד עובד IEC Lock C13"
+          ></iframe>
+        </div>
+        <p class="video-caption" aria-label="כיתוב סרטון">
+          How it Works — IEC Lock C13 Connector
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VIDEO PLAYLIST — 4 cards in 2×2 grid
+  ============================================================ -->
+  <section id="video-playlist" aria-label="עוד סרטונים">
+    <div class="container">
+      <div class="playlist-header">
+        <span class="red-line" aria-hidden="true"></span>
+        <h2 class="section-title">עוד <span>סרטונים</span></h2>
+        <p class="section-subtitle" style="margin-left:auto;margin-right:auto;text-align:center;">
+          גלו את כל הדגמות IEC Lock בערוץ היוטיוב הרשמי
+        </p>
+      </div>
+
+      <div class="playlist-grid" role="list">
+
+        <!-- Card 1 -->
+        <a
+          href="https://www.youtube.com/watch?v=VxS6LBlfaQM"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card"
+          role="listitem"
+          aria-label="כיצד עובד IEC Lock — שקעים — פתח ביוטיוב"
+        >
+          <div class="video-thumbnail">
+            <img
+              src="https://img.youtube.com/vi/VxS6LBlfaQM/hqdefault.jpg"
+              alt="תמונה ממוזערת — כיצד עובד IEC Lock שקעים"
+              loading="lazy"
+              width="480"
+              height="270"
+            />
+            <div class="video-thumbnail-overlay" aria-hidden="true"></div>
+            <div class="play-btn" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h3 class="video-card-title">כיצד עובד IEC Lock — שקעים</h3>
+            <span class="video-card-tag">IEC Lock Outlets</span>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a
+          href="https://www.youtube.com/watch?v=lpJMmxCjjdQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card"
+          role="listitem"
+          aria-label="כיצד עובד — מחבר C13 — פתח ביוטיוב"
+        >
+          <div class="video-thumbnail">
+            <img
+              src="https://img.youtube.com/vi/lpJMmxCjjdQ/hqdefault.jpg"
+              alt="תמונה ממוזערת — כיצד עובד מחבר C13"
+              loading="lazy"
+              width="480"
+              height="270"
+            />
+            <div class="video-thumbnail-overlay" aria-hidden="true"></div>
+            <div class="play-btn" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h3 class="video-card-title">כיצד עובד — מחבר C13</h3>
+            <span class="video-card-tag">C13 Connector Demo</span>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a
+          href="https://www.youtube.com/watch?v=_uY7Pa8RLvQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card"
+          role="listitem"
+          aria-label="מחברי IEC Lock — פתח ביוטיוב"
+        >
+          <div class="video-thumbnail">
+            <img
+              src="https://img.youtube.com/vi/_uY7Pa8RLvQ/hqdefault.jpg"
+              alt="תמונה ממוזערת — מחברי IEC Lock"
+              loading="lazy"
+              width="480"
+              height="270"
+            />
+            <div class="video-thumbnail-overlay" aria-hidden="true"></div>
+            <div class="play-btn" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h3 class="video-card-title">מחברי IEC Lock</h3>
+            <span class="video-card-tag">IEC Lock Connectors</span>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a
+          href="https://www.youtube.com/watch?v=lYhUciHzNOo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card"
+          role="listitem"
+          aria-label="ברוכים הבאים ל-IEC Lock — פתח ביוטיוב"
+        >
+          <div class="video-thumbnail">
+            <img
+              src="https://img.youtube.com/vi/lYhUciHzNOo/hqdefault.jpg"
+              alt="תמונה ממוזערת — ברוכים הבאים ל-IEC Lock"
+              loading="lazy"
+              width="480"
+              height="270"
+            />
+            <div class="video-thumbnail-overlay" aria-hidden="true"></div>
+            <div class="play-btn" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h3 class="video-card-title">ברוכים הבאים ל-IEC Lock</h3>
+            <span class="video-card-tag">Welcome to IEC Lock</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PATENT / TECHNICAL NOTE
+  ============================================================ -->
+  <section id="patent-note" aria-label="מידע פטנט">
+    <div class="container">
+      <div class="patent-card">
+        <span class="patent-icon" aria-hidden="true">🛡️</span>
+
+        <div class="patent-badges" role="list" aria-label="פטנטים">
+          <span class="patent-badge-item" role="listitem">מוגן בפטנט</span>
+          <span class="patent-badge-sep" aria-hidden="true"></span>
+          <span class="patent-badge-item" role="listitem">U.K. Patent No. GB2383202B</span>
+          <span class="patent-badge-sep" aria-hidden="true"></span>
+          <span class="patent-badge-item" role="listitem">EU Patent No. EP14594121</span>
+        </div>
+
+        <h2 class="patent-title">הגנה פטנטית בינלאומית</h2>
+
+        <p class="patent-desc">
+          מנגנון הנעילה של IEC Lock מוגן בפטנטים בריטיים ובינלאומיים, המבטיחים שאתם מקבלים את הטכנולוגיה המקורית והאמינה ביותר בשוק.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-top">
+          <!-- Logo -->
+          <a href="index.html" class="footer-logo" aria-label="IEC Lock דף הבית">
+            IEC LO<span class="k">K</span>™
+          </a>
+
+          <!-- Footer Nav -->
+          <nav class="footer-nav" aria-label="ניווט תחתית">
+            <a href="products/index.html">מוצרים</a>
+            <a href="applications.html">יישומים</a>
+            <a href="how-it-works.html">איך זה עובד</a>
+            <a href="#">מידע טכני</a>
+            <a href="#">חדשות</a>
+            <a href="index.html#contact">צור קשר</a>
+          </nav>
+
+          <!-- Social -->
+          <div class="footer-social" role="list" aria-label="רשתות חברתיות">
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד Facebook" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד Twitter / X" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="עמוד LinkedIn" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" role="listitem" aria-label="ערוץ YouTube" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-divider" role="separator"></div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            <p>
+              &copy; 2018–2024 Scolmore Group. כל הזכויות שמורות.<br />
+              IEC Lock™ הינה סימן מסחרי רשום של <a href="https://scolmore.com" target="_blank" rel="noopener noreferrer">Scolmore Group Ltd</a>.
+            </p>
+          </div>
+          <div class="footer-patents">
+            <span class="footer-patent-badge">פטנט בריטי מס׳ GB2383202B</span>
+            <span class="footer-patent-badge" style="font-size:0.65rem;color:var(--text-muted);">מוגן בפטנטים בינלאומיים נוספים</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       VANILLA JS — Sticky nav + mobile menu
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* --- Sticky nav on scroll --- */
+      var nav = document.getElementById('nav');
+      var THRESHOLD = 60;
+
+      function onScroll() {
+        if (window.scrollY > THRESHOLD) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* --- Mobile hamburger menu --- */
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      /* --- Intersection Observer for scroll-reveal --- */
+      if ('IntersectionObserver' in window) {
+        var revealItems = document.querySelectorAll('.step-card, .video-card');
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        revealItems.forEach(function (item, idx) {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(18px)';
+          item.style.transition =
+            'opacity 0.5s ease ' + (idx % 4 * 0.09) + 's, ' +
+            'transform 0.5s ease ' + (idx % 4 * 0.09) + 's, ' +
+            'background 0.25s ease, ' +
+            'border-color 0.25s ease, ' +
+            'box-shadow 0.25s ease';
+          observer.observe(item);
+        });
+      }
+
+      /* --- Keyboard accessibility for video cards --- */
+      document.querySelectorAll('.video-card').forEach(function (card) {
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
+    }());
+  </script>
+
+</body>
+</html>

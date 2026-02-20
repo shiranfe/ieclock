@@ -1,0 +1,307 @@
+{
+  "scrape_date": "2026-02-20",
+  "source_site": "https://ieclock.com",
+  "pages": {
+    "applications": {
+      "url": "https://ieclock.com/applications",
+      "title": "Scolmore IEC Lock - Applications",
+      "css_background_images_source": "https://ieclock.com/assets/css/app.css",
+      "css_class_structure": "CSS classes .orbit-slide.os01 through .orbit-slide.os08 define each application slide",
+      "applications": [
+        {
+          "index": 1,
+          "css_class": "os01",
+          "name": "Maritime",
+          "description": "Protecting appliances against disconnection from vibration.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/maritime-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\maritime-bg.jpg",
+          "size_bytes": 259634
+        },
+        {
+          "index": 2,
+          "css_class": "os02",
+          "name": "Motor Racing",
+          "description": "Ensuring 100% connection to mobile pit equipment to avoid costly delays.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/motor-racing-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\motor-racing-bg.jpg",
+          "size_bytes": 93343
+        },
+        {
+          "index": 3,
+          "css_class": "os03",
+          "name": "Medical Applications",
+          "description": "Where an uninterrupted power supply is critical at all times.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/medical-application-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\medical-application-bg.jpg",
+          "size_bytes": 188135
+        },
+        {
+          "index": 4,
+          "css_class": "os04",
+          "name": "Military",
+          "description": "Protecting appliances against any kind of disconnection from vibration.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/military-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\military-bg.jpg",
+          "size_bytes": 195943
+        },
+        {
+          "index": 5,
+          "css_class": "os05",
+          "name": "Outside Broadcasting",
+          "description": "Where an uninterrupted power supply is critical.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/outside-broadcasting-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\outside-broadcasting-bg.jpg",
+          "size_bytes": 117808
+        },
+        {
+          "index": 6,
+          "css_class": "os06",
+          "name": "Data Centres",
+          "description": "Protects against accidental withdrawal of numerous cable connections.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/data-centres-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\data-centres-bg.jpg",
+          "size_bytes": 142090
+        },
+        {
+          "index": 7,
+          "css_class": "os07",
+          "name": "Recording Studios",
+          "description": "Help protect your equipment from accidental disconnection.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/vending-machines-bg.jpg",
+          "server_filename_note": "Server filename is vending-machines-bg.jpg for this slide",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\vending-machines-bg.jpg",
+          "size_bytes": 226150
+        },
+        {
+          "index": 8,
+          "css_class": "os08",
+          "name": "PDUs",
+          "description": "Keeping vital equipment running at all times. Ensuring 100% connection.",
+          "background_image_url": "https://ieclock.com/assets/img/applications/pdus-bg.jpg",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\applications\\pdus-bg.jpg",
+          "size_bytes": 241576
+        }
+      ]
+    },
+    "how_it_works": {
+      "url": "https://ieclock.com/how-it-works",
+      "title": "Scolmore IEC Lock - How it works",
+      "youtube_videos_count": 5,
+      "youtube_videos": [
+        {
+          "video_id": "VxS6LBlfaQM",
+          "title": "How It Works - IEC Lock Outlets - Scolmore",
+          "embed_url": "https://www.youtube.com/embed/VxS6LBlfaQM",
+          "watch_url": "https://www.youtube.com/watch?v=VxS6LBlfaQM"
+        },
+        {
+          "video_id": "c49fc5ZckwY",
+          "title": "How it Works - IEC Lock C13 Connector",
+          "embed_url": "https://www.youtube.com/embed/c49fc5ZckwY",
+          "watch_url": "https://www.youtube.com/watch?v=c49fc5ZckwY"
+        },
+        {
+          "video_id": "lpJMmxCjjdQ",
+          "title": "How it works - IEC Lock C13 Connector (alternate)",
+          "embed_url": "https://www.youtube.com/embed/lpJMmxCjjdQ",
+          "watch_url": "https://www.youtube.com/watch?v=lpJMmxCjjdQ"
+        },
+        {
+          "video_id": "_uY7Pa8RLvQ",
+          "title": "IEC Lock Connectors",
+          "embed_url": "https://www.youtube.com/embed/_uY7Pa8RLvQ",
+          "watch_url": "https://www.youtube.com/watch?v=_uY7Pa8RLvQ"
+        },
+        {
+          "video_id": "lYhUciHzNOo",
+          "title": "Welcome to IEC Lock",
+          "embed_url": "https://www.youtube.com/embed/lYhUciHzNOo",
+          "watch_url": "https://www.youtube.com/watch?v=lYhUciHzNOo"
+        }
+      ]
+    },
+    "case_studies": [
+      {
+        "id": 805,
+        "url": "https://ieclock.com/case-studies/case_study?id=805",
+        "title": "IEC Lock connects at prestigious London Experience Centre",
+        "client": "Technological Innovations Group (TIG) / Visualization Ltd",
+        "industry": "AV / IT Integration / Data Centres",
+        "summary": "Visualization Ltd selected the world first locking C13 IEC connector for the rack build at TIG London Experience Centre.",
+        "images": {
+          "article_image": "http://old2023.scolmore.com/_media/featured_images/805_article.png",
+          "thumbnail_url": "https://old2023.scolmore.com/_media/featured_images/805_landscape.png",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\case-studies\\case-study-805.png",
+          "size_bytes": 623987,
+          "format": "landscape"
+        }
+      },
+      {
+        "id": 112,
+        "url": "https://ieclock.com/case-studies/case_study?id=112",
+        "title": "Plugging into Sky",
+        "client": "BSkyB",
+        "industry": "Broadcasting / Data Centres",
+        "summary": "Scolmore IEC Locks protected servers and IT equipment at multiple BSkyB data centres throughout the UK network.",
+        "images": {
+          "article_image": "http://old2023.scolmore.com/_media/featured_images/112_article.png",
+          "thumbnail_url": "https://old2023.scolmore.com/_media/featured_images/112_square.png",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\case-studies\\case-study-112.png",
+          "size_bytes": 213471,
+          "format": "square"
+        }
+      },
+      {
+        "id": 117,
+        "url": "https://ieclock.com/case-studies/case_study?id=117",
+        "title": "Locking out the competition",
+        "client": "EPS Electric Power Systems (Austria)",
+        "industry": "Data Centre Infrastructure / ATS / UPS Systems",
+        "summary": "Austrian manufacturer EPS incorporated IEC Lock C13 and C19 outlets into their ATS3020 RM Lock and EBS3000 RM Lock products.",
+        "images": {
+          "article_image": "http://old2023.scolmore.com/_media/featured_images/117_article.png",
+          "thumbnail_url": "https://old2023.scolmore.com/_media/featured_images/117_square.png",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\case-studies\\case-study-117.png",
+          "size_bytes": 104617,
+          "format": "square"
+        }
+      },
+      {
+        "id": 261,
+        "url": "https://ieclock.com/case-studies/case_study?id=261",
+        "title": "Scolmores IEC Lock turns up the heat",
+        "client": "iDtools (Netherlands) - manufacturer of the iDuctor",
+        "industry": "Automotive / Marine / Aerospace / Petrochemical Tools",
+        "summary": "iDtools chose IEC Lock C13 power cord for its award-winning iDuctor flameless induction heating tool. Use of a power cord with lock in hand-held induction heaters is patented by iDtools.",
+        "images": {
+          "article_image": "http://old2023.scolmore.com/_media/featured_images/261_article.png",
+          "thumbnail_url": "https://old2023.scolmore.com/_media/featured_images/261_square.png",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\case-studies\\case-study-261.png",
+          "size_bytes": 245524,
+          "format": "square"
+        }
+      },
+      {
+        "id": 139,
+        "url": "https://ieclock.com/case-studies/case_study?id=139",
+        "title": "IEC Lock Boosts Deliveries To Maritime Sector",
+        "client": "Kongsberg Maritime (Norway) via Fox Electronics",
+        "industry": "Maritime / Offshore / Subsea",
+        "summary": "Scolmore partnered with Kongsberg Maritime for critical maritime applications. Kongsberg was first customer of Fox Electronics (IEC Lock Norwegian distributor).",
+        "images": {
+          "article_image": "http://old2023.scolmore.com/_media/featured_images/139_article.png",
+          "thumbnail_url": null,
+          "downloaded_to": null,
+          "note": "id=139 was not in the requested download list"
+        }
+      },
+      {
+        "id": 377,
+        "url": "https://ieclock.com/case-studies/case_study?id=377",
+        "title": "Essential data communications solution",
+        "client": "ADP (Automatic Data Processing)",
+        "industry": "Data Centres / Cloud HCM / Business Outsourcing",
+        "summary": "ADP (600000+ clients, 100+ countries) used Scolmore IEC Lock at European datacentres to secure PDU-to-server connections, using red and black colour-coded connectors for two different power sources.",
+        "images": {
+          "article_image": "http://old2023.scolmore.com/_media/featured_images/377_article.png",
+          "thumbnail_url": "https://old2023.scolmore.com/_media/featured_images/377_portrait.png",
+          "downloaded_to": "C:\\projects\\ielock\\assets\\img\\case-studies\\case-study-377.png",
+          "size_bytes": 116697,
+          "format": "portrait"
+        }
+      }
+    ]
+  },
+  "downloaded_files": {
+    "application_backgrounds": {
+      "directory": "C:\\projects\\ielock\\assets\\img\\applications",
+      "count": 8,
+      "files": [
+        {
+          "filename": "maritime-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/maritime-bg.jpg",
+          "size_bytes": 259634,
+          "slide": "os01 - Maritime"
+        },
+        {
+          "filename": "motor-racing-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/motor-racing-bg.jpg",
+          "size_bytes": 93343,
+          "slide": "os02 - Motor Racing"
+        },
+        {
+          "filename": "medical-application-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/medical-application-bg.jpg",
+          "size_bytes": 188135,
+          "slide": "os03 - Medical Applications"
+        },
+        {
+          "filename": "military-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/military-bg.jpg",
+          "size_bytes": 195943,
+          "slide": "os04 - Military"
+        },
+        {
+          "filename": "outside-broadcasting-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/outside-broadcasting-bg.jpg",
+          "size_bytes": 117808,
+          "slide": "os05 - Outside Broadcasting"
+        },
+        {
+          "filename": "data-centres-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/data-centres-bg.jpg",
+          "size_bytes": 142090,
+          "slide": "os06 - Data Centres"
+        },
+        {
+          "filename": "vending-machines-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/vending-machines-bg.jpg",
+          "size_bytes": 226150,
+          "slide": "os07 - Recording Studios (server filename differs)"
+        },
+        {
+          "filename": "pdus-bg.jpg",
+          "source": "https://ieclock.com/assets/img/applications/pdus-bg.jpg",
+          "size_bytes": 241576,
+          "slide": "os08 - PDUs"
+        }
+      ]
+    },
+    "case_study_thumbnails": {
+      "directory": "C:\\projects\\ielock\\assets\\img\\case-studies",
+      "count": 5,
+      "files": [
+        {
+          "filename": "case-study-805.png",
+          "source": "https://old2023.scolmore.com/_media/featured_images/805_landscape.png",
+          "size_bytes": 623987,
+          "format": "landscape"
+        },
+        {
+          "filename": "case-study-112.png",
+          "source": "https://old2023.scolmore.com/_media/featured_images/112_square.png",
+          "size_bytes": 213471,
+          "format": "square"
+        },
+        {
+          "filename": "case-study-117.png",
+          "source": "https://old2023.scolmore.com/_media/featured_images/117_square.png",
+          "size_bytes": 104617,
+          "format": "square"
+        },
+        {
+          "filename": "case-study-261.png",
+          "source": "https://old2023.scolmore.com/_media/featured_images/261_square.png",
+          "size_bytes": 245524,
+          "format": "square"
+        },
+        {
+          "filename": "case-study-377.png",
+          "source": "https://old2023.scolmore.com/_media/featured_images/377_portrait.png",
+          "size_bytes": 116697,
+          "format": "portrait"
+        }
+      ]
+    }
+  }
+}
