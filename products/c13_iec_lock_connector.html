@@ -170,6 +170,59 @@
       }
       .footer-patents { align-items: center; justify-content: center; }
       .footer-links { justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    
+      
+      /* Mobile optimizations for 480px - Small phones */
+      .container {
+        padding: 0 16px !important;
+      }
+      
+      section {
+        padding: 40px 0 !important;
+      }
+      
+      .section-title {
+        font-size: clamp(1.5rem, 5vw, 2.25rem) !important;
+        margin-bottom: 0.5em !important;
+      }
+      
+      .section-subtitle {
+        font-size: 0.95rem !important;
+        margin-bottom: 2rem !important;
+      }
+      
+      .section-header {
+        margin-bottom: 2rem !important;
+      }
+      
+      button, .btn, input[type="button"], input[type="submit"] {
+        min-height: 48px !important;
+        padding: 12px 18px !important;
+        font-size: 15px !important;
+      }
+      
+      nav {
+        padding: 0.875rem 0 !important;
+      }
+      
+      .nav-link, nav a {
+        padding: 8px 12px !important;
+      }
+      
+      h1 { font-size: clamp(1.5rem, 6vw, 2.25rem) !important; }
+      h2 { font-size: clamp(1.25rem, 5vw, 1.75rem) !important; }
+      h3 { font-size: clamp(1rem, 4vw, 1.35rem) !important; }
+      
+      /* Ensure grids stack on mobile */
+      .grid, .grid-2, .grid-3, [class*="grid-cols"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+      
+      .hero-image img {
+        max-height: 300px !important;
+        width: 100% !important;
+      }
     }
 
     /* Mobile responsive - 600px */
@@ -192,6 +245,39 @@
       
       table { font-size: 0.9rem; }
       td, th { padding: 12px 8px; }
+    
+      
+      /* Mobile optimizations for 600px - Tablets/landscape phones */
+      .container {
+        padding: 0 20px !important;
+      }
+      
+      section {
+        padding: 48px 0 !important;
+      }
+      
+      .section-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+      }
+      
+      button, .btn, input[type="button"], input[type="submit"] {
+        min-height: 48px !important;
+        padding: 12px 20px !important;
+      }
+      
+      /* Ensure grids stack */
+      .grid, .grid-2, .grid-3, [class*="grid-cols"], .grid-cols-2, .grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .product-image {
+        max-height: 250px !important;
+      }
     }
 
     /* Tablet responsive - 768px */
@@ -238,6 +324,62 @@
       }
       .footer-patents { align-items: center; justify-content: center; }
       .footer-links { justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    
+      
+      /* Mobile optimizations for 768px - Small tablets */
+      .container {
+        padding: 0 20px !important;
+      }
+      
+      section {
+        padding: 48px 0 !important;
+      }
+      
+      .section-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+      }
+      
+      .section-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 2rem !important;
+      }
+      
+      button, .btn, input[type="button"], input[type="submit"] {
+        min-height: 48px !important;
+        padding: 12px 20px !important;
+        font-size: 15px !important;
+      }
+      
+      nav {
+        padding: 0.875rem 0 !important;
+      }
+      
+      .nav-link, nav a {
+        padding: 10px 14px !important;
+      }
+      
+      /* Ensure grids stack */
+      .grid, .grid-2, .grid-3, [class*="grid-cols"], .grid-cols-2, .grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .hero {
+        flex-direction: column !important;
+      }
+      
+      .hero-content {
+        order: 2 !important;
+      }
+      
+      .hero-image {
+        order: 1 !important;
+        margin-bottom: 2rem !important;
+      }
     }
 
     /* Desktop responsive - 1024px */
